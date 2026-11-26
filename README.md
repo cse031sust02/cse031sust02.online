@@ -1,6 +1,6 @@
 # cse031sust02.online
 
-Personal site of **Talha Ibne Imam** (Engineering Manager, AI SaaS). It's styled as "TalhaOS", a retro terminal: a CV-driven portfolio plus a **Digital Twin** chat powered by OpenRouter.
+Personal site of **Talha Ibne Imam** (Engineering Manager, AI SaaS). It's styled as "cse031sust02", a retro terminal: a CV-driven portfolio plus a **Digital Twin** chat powered by OpenRouter.
 
 - All CV and twin facts live in one file: [`web/content/profile.yaml`](web/content/profile.yaml).
 - Next.js (App Router) + TypeScript + Tailwind CSS v4, built as a standalone Node server and Docker image, so it runs on any host.

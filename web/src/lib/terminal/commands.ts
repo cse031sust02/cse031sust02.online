@@ -80,7 +80,7 @@ export function runCommand(rawInput: string, data: TerminalData): CommandResult 
       return { lines: ["visitor is not in the sudoers file. This incident will be reported. 🙂"] };
     case "rm":
       if (/^-(rf|fr) \/?$/.test(rest) || rest === "-rf /*") {
-        return { lines: ["rm: nice try. TalhaOS is read-only for visitors. 🛡️"] };
+        return { lines: ["rm: nice try. cse031sust02 is read-only for visitors. 🛡️"] };
       }
       return { lines: ["rm: permission denied"] };
     default:

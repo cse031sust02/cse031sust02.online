@@ -20,12 +20,12 @@ const sans = Inter({ variable: "--font-inter", subsets: ["latin"] });
 // an invalid file fails `npm run build` with a readable error.
 export function generateMetadata(): Metadata {
   const { basics } = getProfile();
-  const defaultTitle = `${basics.name}: ${basics.title} | TalhaOS`;
+  const defaultTitle = `${basics.name}: ${basics.title} | cse031sust02`;
   return {
     metadataBase: new URL(getSiteUrl()),
     title: { default: defaultTitle, template: `%s | ${basics.name}` },
     description: `${basics.tagline} ${basics.summary}`.slice(0, 300),
-    applicationName: "TalhaOS",
+    applicationName: "cse031sust02",
     authors: [{ name: basics.name }],
     alternates: { canonical: "/" },
     openGraph: {
@@ -48,7 +48,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     `Mounting ~/experience (${profile.experience.length} commits)`,
     `Mounting ~/products (${profile.products.length})`,
     "Starting agent daemon",
-    "Welcome to TalhaOS",
+    "Welcome to cse031sust02",
   ];
   const links = profile.links.map(({ label, url }) => ({ label, url }));
 

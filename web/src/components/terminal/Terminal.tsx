@@ -16,7 +16,7 @@ type TerminalProps = {
   onTwin?: (question: string) => Promise<string> | string;
 };
 
-const WELCOME = "Welcome to TalhaOS. Type 'help' to get started.";
+const WELCOME = "Welcome to cse031sust02. Type 'help' to get started.";
 
 export function Terminal({ data, prompt, onTwin }: TerminalProps) {
   const [entries, setEntries] = useState<Entry[]>([{ id: 0, kind: "output", text: WELCOME }]);

@@ -34,7 +34,7 @@ type TwinState = {
   reset: () => void;
 };
 
-const STORAGE_KEY = "talhaos:twin";
+const STORAGE_KEY = "cse031sust02:twin";
 export const MAX_QUESTION_CHARS = 1000;
 const MAX_STORED_MESSAGES = 50;
 

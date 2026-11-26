@@ -1,4 +1,4 @@
-# Site Design: "TalhaOS"
+# Site Design: "cse031sust02"
 
 The site presents as a small retro-futuristic developer OS / terminal, while staying readable for non-technical visitors (recruiters, founders).
 
@@ -42,7 +42,7 @@ The site presents as a small retro-futuristic developer OS / terminal, while sta
 Nav items (label, anchor, terminal command) live in `web/src/config/nav.ts`. The header, section titles and (later) the command palette and sitemap read from it, so adding `/blog` or `/lab` is a config change.
 
 ## Implementation notes
-- A tiny inline script in `<head>` applies `localStorage` state (`talhaos:booted`, `talhaos:crt`) to `<html data-booted data-crt>` before first paint, so returning visitors never see the boot screen flash. Without JS, the boot screen fades out on its own after ~2.5 s.
+- A tiny inline script in `<head>` applies `localStorage` state (`cse031sust02:booted`, `cse031sust02:crt`) to `<html data-booted data-crt>` before first paint, so returning visitors never see the boot screen flash. Without JS, the boot screen fades out on its own after ~2.5 s.
 - The ASCII name is generated from `basics.name` (`web/src/lib/nerd/ascii-font.ts`) and drawn as SVG blocks.
 - Terminal commands are a pure parser (`web/src/lib/terminal/commands.ts`) fed by a serializable slice of the profile.
 - Matrix rain pauses when off-screen (IntersectionObserver) or when the tab is hidden, and never animates with reduced motion.

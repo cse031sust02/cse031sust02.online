@@ -1,8 +1,8 @@
 import { expect, test } from "@playwright/test";
 
-test("home page shows the TalhaOS prompt", async ({ page }) => {
+test("home page shows the cse031sust02 prompt", async ({ page }) => {
   await page.goto("/");
-  await expect(page).toHaveTitle(/TalhaOS/);
+  await expect(page).toHaveTitle(/cse031sust02/);
   await expect(page.getByText(/:~\$ whoami/)).toBeVisible();
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
 });

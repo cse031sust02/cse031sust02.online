@@ -2,7 +2,7 @@
 
 ## Project
 
-**cse031sust02.online**: personal website of Talha Ibne Imam (Engineering Manager, AI SaaS). It has a nerdy "TalhaOS" terminal look, a CV-driven portfolio, and a **Digital Twin** chat powered by OpenRouter.
+**cse031sust02.online**: personal website of Talha Ibne Imam (Engineering Manager, AI SaaS). It has a nerdy "cse031sust02" terminal look, a CV-driven portfolio, and a **Digital Twin** chat powered by OpenRouter.
 
 The work is spec-driven: see [Workflow](#workflow). Overview: [ARCHITECTURE.md](ARCHITECTURE.md).
 

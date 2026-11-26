@@ -11,7 +11,7 @@ export function TerminalSection({ profile }: { profile: Profile }) {
         <code className="text-accent-2">whoami</code> or{" "}
         <code className="text-accent-2">ls products</code>. Everything here is also on the page.
       </p>
-      <Terminal data={toTerminalData(profile)} prompt="visitor@talhaos:~$" />
+      <Terminal data={toTerminalData(profile)} prompt="visitor@cse031sust02:~$" />
     </Section>
   );
 }

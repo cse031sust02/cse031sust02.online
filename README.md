@@ -13,8 +13,7 @@ cse031sust02.online/
 ├── docs/                 # features/, decisions/ (ADRs), deployment/
 ├── specs/                # backlog/ → active/ → completed/
 ├── tasks/                # task template
-├── docker-compose.yml    # production-like local run (build context ./web)
-├── docker-compose.dev.yml  # local dev in Docker with live reload (mounts ./web)
+├── docker-compose.yml    # local dev in Docker with live reload (mounts ./web, port 3000)
 ├── AGENTS.md             # rules for coding agents
 └── ARCHITECTURE.md       # how the pieces fit together
 ```
@@ -28,16 +27,10 @@ npm install
 npm run dev                  # http://localhost:3000
 ```
 
-Production-like run with Docker, from the repo root:
+Or in Docker with live reload (no rebuild after edits), from the repo root:
 
 ```bash
-docker compose up --build    # reads web/.env if present → http://localhost (port 80)
-```
-
-Dev in Docker with live reload (no rebuild after edits):
-
-```bash
-docker compose -f docker-compose.dev.yml up   # → http://localhost:3000
+docker compose up            # → http://localhost:3000
 ```
 
 Full guide: [docs/deployment/local.md](docs/deployment/local.md).

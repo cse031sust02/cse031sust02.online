@@ -48,3 +48,7 @@ npm run build
 ## How work is done
 
 Spec-driven: feature doc → spec with acceptance criteria → build and verify. See [AGENTS.md](AGENTS.md).
+
+## License
+
+Code is released under the [MIT License](LICENSE). Personal content (`web/content/`, the résumé and the cse031sust02 branding) is excluded and all rights are reserved. See [LICENSE](LICENSE) for details.

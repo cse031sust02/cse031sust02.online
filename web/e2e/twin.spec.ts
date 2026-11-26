@@ -20,10 +20,7 @@ test("streams a markdown reply in the slide-over without executing HTML", async 
     }),
   );
   await page.goto("/");
-  await page
-    .getByRole("button", { name: /chat with my twin/i })
-    .last()
-    .click();
+  await page.getByRole("button", { name: /^Ask .+ AI twin$/ }).click();
   const dialog = page.getByRole("dialog", { name: /digital twin/i });
   await expect(dialog).toBeVisible();
   await dialog.getByRole("textbox").fill("What do you build?");
@@ -50,6 +47,31 @@ test("home teaser prompt opens the chat; Esc closes it", async ({ page }) => {
   await expect(dialog.getByTestId("twin-reply")).toContainText("Hi!");
   await page.keyboard.press("Escape");
   await expect(dialog).toBeHidden();
+});
+
+test("agent UI: thinking indicator, status, follow-up chips and new chat", async ({ page }) => {
+  let release!: () => void;
+  const gate = new Promise<void>((r) => (release = r));
+  await page.route("/api/chat", async (route) => {
+    await gate;
+    await route.fulfill({ status: 200, body: "Happy to help." });
+  });
+  await page.goto("/twin");
+  await expect(page.getByTestId("agent-status")).toContainText("online");
+  await page.getByRole("list", { name: "Suggested questions" }).getByRole("button").first().click();
+
+  await expect(page.getByTestId("twin-thinking")).toBeVisible();
+  await expect(page.getByTestId("agent-status")).toContainText("thinking");
+  release();
+
+  await expect(page.getByTestId("twin-reply")).toContainText("Happy to help.");
+  await expect(page.getByTestId("twin-thinking")).toHaveCount(0);
+  const followUps = page.getByRole("list", { name: "Follow-up suggestions" }).getByRole("button");
+  await expect(followUps.first()).toBeVisible();
+  await expect(page.getByRole("button", { name: "copy reply" })).toBeVisible();
+
+  await page.getByRole("button", { name: "new chat" }).click();
+  await expect(page.getByTestId("twin-reply")).toHaveCount(0);
 });
 
 test("terminal 'twin <q>' asks the twin", async ({ page }) => {

@@ -3,12 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
+import { AgentAvatar, StatusDot } from "./AgentAvatar";
 import { TwinChat } from "./TwinChat";
 import { useTwin } from "./TwinProvider";
 
 /** Floating launcher on every page (except /twin) → slide-over chat. */
 export function TwinLauncher() {
-  const { open, setOpen } = useTwin();
+  const { open, setOpen, ownerName, status } = useTwin();
   const pathname = usePathname();
   const launcherRef = useRef<HTMLButtonElement>(null);
   const wasOpen = useRef(false);
@@ -36,9 +37,17 @@ export function TwinLauncher() {
           ref={launcherRef}
           type="button"
           onClick={() => setOpen(true)}
-          className="fixed right-4 bottom-4 z-50 rounded-full border border-accent bg-surface px-4 py-3 font-mono text-sm text-accent shadow-glow hover:bg-accent hover:text-bg"
+          className="group fixed right-4 bottom-4 z-50 flex items-center gap-2.5 rounded-full border border-accent/60 bg-surface py-1.5 pr-4 pl-1.5 text-sm text-fg shadow-glow transition-colors hover:border-accent"
         >
-          <span aria-hidden="true">&gt;_ </span>Chat with my twin
+          <span className="relative">
+            <AgentAvatar size={36} />
+            <span className="absolute -right-0.5 -bottom-0.5 rounded-full bg-surface p-0.5">
+              <StatusDot tone={status === "offline" ? "offline" : "online"} />
+            </span>
+          </span>
+          <span className="font-medium group-hover:text-accent">
+            Ask {ownerName}&apos;s AI twin
+          </span>
         </button>
       )}
       {open && (
@@ -54,26 +63,46 @@ export function TwinLauncher() {
             aria-label="Chat with my digital twin"
             className="absolute top-0 right-0 flex h-dvh w-full max-w-md flex-col border-l border-border bg-surface shadow-glow"
           >
-            <div className="flex items-center justify-between gap-2 border-b border-border bg-surface-2 px-4 py-2 font-mono text-xs">
-              <span className="text-muted">~/twin — chat</span>
-              <span className="flex gap-3">
-                <Link
-                  href="/twin"
-                  onClick={() => setOpen(false)}
-                  className="text-accent-2 hover:underline"
-                >
-                  full screen
-                </Link>
-                <button
-                  type="button"
-                  onClick={() => setOpen(false)}
-                  className="text-muted hover:text-fg"
-                >
-                  close<span className="sr-only"> chat</span>
-                </button>
-              </span>
-            </div>
-            <TwinChat autoFocus className="flex-1" />
+            <TwinChat
+              autoFocus
+              className="flex-1"
+              actions={
+                <>
+                  <Link
+                    href="/twin"
+                    onClick={() => setOpen(false)}
+                    className="rounded-chip p-1.5 text-muted hover:text-accent"
+                    title="Full screen"
+                  >
+                    <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none">
+                      <path
+                        d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                    <span className="sr-only">Open full screen</span>
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => setOpen(false)}
+                    className="rounded-chip p-1.5 text-muted hover:text-fg"
+                    title="Close"
+                  >
+                    <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none">
+                      <path
+                        d="M6 6l12 12M18 6L6 18"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                    <span className="sr-only">Close chat</span>
+                  </button>
+                </>
+              }
+            />
           </div>
         </div>
       )}

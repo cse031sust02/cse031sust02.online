@@ -8,6 +8,14 @@ Visitors chat with an AI persona of Talha that answers in first person, grounded
 3. The server validates and rate-limits, builds the system prompt from the profile, and calls OpenRouter with streaming.
 4. Tokens stream back and render as markdown with a blinking cursor.
 
+## UI: AI agent chat
+- Agent identity header: bot avatar, "<first name>'s AI Twin", and a live status dot: *online*, *thinking…* (before the first token), *typing…* (streaming), *offline* (503).
+- Chat bubbles with avatars, a greeting from the agent, a typing-dots indicator, and a streaming cursor.
+- Suggested questions to start; follow-up suggestion chips after each answer (questions not asked yet); copy button on replies; "new chat" resets the conversation.
+- Pill input: Enter sends, Shift+Enter adds a newline, a character counter appears near the 1,000 limit, and the disclaimer sits under the input.
+- Round floating launcher with avatar + online dot ("Ask <name>'s AI twin"); the home teaser previews the agent greeting.
+- The UI never shows fake tool calls or capabilities. Status reflects real request state only.
+
 ## Rules
 - First person as Talha: warm, concise (≤ ~150 words unless asked), slightly nerdy, professional.
 - Only facts from the profile. Unknown → say so and point to the contact form. Never invent employers, dates, numbers, salaries or opinions on named people or companies.

@@ -23,7 +23,6 @@ function agentState(status: TwinStatus, waitingForFirstToken: boolean) {
 export function TwinChat({ autoFocus = false, className = "", actions }: TwinChatProps) {
   const { messages, status, prompts, send, reset, ownerName } = useTwin();
   const [draft, setDraft] = useState("");
-  const [copied, setCopied] = useState<number | null>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const logRef = useRef<HTMLDivElement>(null);
   const streaming = status === "streaming";
@@ -46,19 +45,6 @@ export function TwinChat({ autoFocus = false, className = "", actions }: TwinCha
     inputRef.current?.focus();
   };
 
-  const copy = async (text: string, index: number) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(index);
-      window.setTimeout(() => setCopied((c) => (c === index ? null : c)), 1500);
-    } catch {
-      /* clipboard unavailable */
-    }
-  };
-
-  const asked = new Set(messages.filter((m) => m.role === "user").map((m) => m.content));
-  const followUps = prompts.filter((p) => !asked.has(p)).slice(0, 3);
-  const showFollowUps = !streaming && last?.role === "assistant" && last.content !== "";
   const notice = status !== "idle" && status !== "streaming" ? STATUS_TEXT[status] : null;
   const agentName = `${ownerName}'s AI Agent`;
 
@@ -130,21 +116,7 @@ export function TwinChat({ autoFocus = false, className = "", actions }: TwinCha
             );
           }
           return (
-            <AgentBubble
-              key={i}
-              footer={
-                !(isLast && streaming) && (
-                  <button
-                    type="button"
-                    onClick={() => copy(m.content, i)}
-                    className="font-mono text-[11px] text-muted hover:text-accent"
-                  >
-                    {copied === i ? "copied ✓" : "copy"}
-                    <span className="sr-only"> reply</span>
-                  </button>
-                )
-              }
-            >
+            <AgentBubble key={i}>
               <div data-testid="twin-reply">
                 <span className="sr-only">AI agent: </span>
                 <Markdown text={m.content} />
@@ -157,10 +129,6 @@ export function TwinChat({ autoFocus = false, className = "", actions }: TwinCha
             </AgentBubble>
           );
         })}
-
-        {showFollowUps && followUps.length > 0 && (
-          <PromptChips prompts={followUps} onPick={submit} label="Follow-up suggestions" />
-        )}
       </div>
 
       {notice && (
@@ -229,7 +197,7 @@ export function TwinChat({ autoFocus = false, className = "", actions }: TwinCha
   );
 }
 
-function AgentBubble({ children, footer }: { children: ReactNode; footer?: ReactNode }) {
+function AgentBubble({ children }: { children: ReactNode }) {
   return (
     <div className="flex items-start gap-2">
       <AgentAvatar size={26} className="mt-0.5" />
@@ -237,7 +205,6 @@ function AgentBubble({ children, footer }: { children: ReactNode; footer?: React
         <div className="rounded-2xl rounded-tl-sm border border-border bg-surface-2 px-3.5 py-2 text-fg">
           {children}
         </div>
-        {footer && <div className="mt-1 pl-1">{footer}</div>}
       </div>
     </div>
   );

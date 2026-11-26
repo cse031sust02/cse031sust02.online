@@ -49,7 +49,9 @@ test("home teaser prompt opens the chat; Esc closes it", async ({ page }) => {
   await expect(dialog).toBeHidden();
 });
 
-test("agent UI: thinking indicator, status, follow-up chips and new chat", async ({ page }) => {
+test("agent UI: thinking indicator, status, no chips after answers, and new chat", async ({
+  page,
+}) => {
   let release!: () => void;
   const gate = new Promise<void>((r) => (release = r));
   await page.route("/api/chat", async (route) => {
@@ -66,9 +68,10 @@ test("agent UI: thinking indicator, status, follow-up chips and new chat", async
 
   await expect(page.getByTestId("twin-reply")).toContainText("Happy to help.");
   await expect(page.getByTestId("twin-thinking")).toHaveCount(0);
-  const followUps = page.getByRole("list", { name: "Follow-up suggestions" }).getByRole("button");
-  await expect(followUps.first()).toBeVisible();
-  await expect(page.getByRole("button", { name: "copy reply" })).toBeVisible();
+  // Suggested questions only appear before the first question; no chips after answers.
+  await expect(page.getByRole("list", { name: "Suggested questions" })).toHaveCount(0);
+  await expect(page.getByRole("list", { name: "Follow-up suggestions" })).toHaveCount(0);
+  await expect(page.getByRole("button", { name: /copy/i })).toHaveCount(0);
 
   await page.getByRole("button", { name: "new chat" }).click();
   await expect(page.getByTestId("twin-reply")).toHaveCount(0);

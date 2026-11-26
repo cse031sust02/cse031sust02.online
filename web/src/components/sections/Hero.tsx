@@ -4,6 +4,19 @@ import { MirageScene } from "@/components/hero/MirageScene";
 import { Typewriter } from "@/components/hero/Typewriter";
 import { MatrixRain } from "@/components/nerd/MatrixRain";
 import { ExternalLink } from "@/components/ui/ExternalLink";
+import { seededRandom } from "@/lib/theme/geometry";
+
+// Mirage gold dust: deterministic so server and client markup match.
+const DUST = (() => {
+  const rand = seededRandom(11);
+  return Array.from({ length: 22 }, () => ({
+    left: `${(rand() * 100).toFixed(1)}%`,
+    top: `${(30 + rand() * 70).toFixed(1)}%`,
+    size: `${(1.5 + rand() * 2.5).toFixed(1)}px`,
+    delay: `${(rand() * -12).toFixed(1)}s`,
+    duration: `${(8 + rand() * 8).toFixed(1)}s`,
+  }));
+})();
 
 const ctaBase =
   "cta inline-flex items-center gap-2 rounded-chip border px-4 py-2 font-mono text-sm transition-colors";
@@ -23,6 +36,22 @@ export function Hero({ profile }: { profile: Profile }) {
       <div className="theme-terminal">
         <MatrixRain className="absolute inset-0 -z-10 size-full opacity-25 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
         <AsciiName name={basics.name} />
+      </div>
+
+      <div aria-hidden="true" className="theme-mirage mirage-dust">
+        {DUST.map((d, i) => (
+          <span
+            key={i}
+            style={{
+              left: d.left,
+              top: d.top,
+              width: d.size,
+              height: d.size,
+              animationDelay: d.delay,
+              animationDuration: d.duration,
+            }}
+          />
+        ))}
       </div>
 
       <div className="hero-grid">

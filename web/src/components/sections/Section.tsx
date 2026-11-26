@@ -14,7 +14,7 @@ const toArabicIndic = (s: string) => s.replace(/\d/g, (d) => ARABIC_INDIC[Number
 
 /**
  * A home-page section: anchor target + window card with an h2. The eyebrow above the heading
- * is themed: a `$ command` prompt (Terminal) or an ornamental numeral (Mirage).
+ * is themed: a `$ command` prompt (Terminal) or a star medallion + divider (Mirage).
  */
 export function Section({ id, children }: SectionProps) {
   const item = navItem(id);
@@ -26,10 +26,8 @@ export function Section({ id, children }: SectionProps) {
         <p aria-hidden="true" className="theme-terminal mb-1 font-mono text-sm text-muted">
           <span className="text-accent">$</span> {item.command}
         </p>
-        <p aria-hidden="true" className="theme-mirage section-eyebrow">
+        <p aria-hidden="true" className="theme-mirage section-medallion">
           <span lang="ar">{toArabicIndic(number)}</span>
-          <span className="section-eyebrow-rule" />
-          <span>{number}</span>
         </p>
         <h2
           id={headingId}
@@ -37,6 +35,11 @@ export function Section({ id, children }: SectionProps) {
         >
           {item.label}
         </h2>
+        <p aria-hidden="true" className="theme-mirage section-divider">
+          <span className="section-divider-star" />
+          <span className="section-divider-num">{number}</span>
+          <span className="section-divider-star" />
+        </p>
         {children}
       </WindowCard>
     </section>

@@ -3,13 +3,16 @@ import { KHATAM_RATIO, starField, starPoints } from "@/lib/theme/geometry";
 /*
  * Mirage hero art: a pointed (two-centred) arch framing a desert night — dusk sky, crescent,
  * a distant skyline, layered dunes — overlaid with a turquoise "constellation network" and
- * flowing data lines over the sand: heritage meets technology.
+ * flowing data lines over the sand: heritage meets technology. Between the dunes shimmers the
+ * namesake mirage: a heat-haze "lake" that reflects the skyline.
  * Decorative only. Colours come from theme tokens (--scene-*, --color-*) via inline styles.
  * Animations are CSS (globals.css, .mirage-*) and stop under prefers-reduced-motion.
  */
 
 const W = 400;
 const H = 520;
+/** Extra room below the arch for the plinth. */
+const VIEW_H = 548;
 
 // Outer and inner pointed-arch outlines.
 const ARCH_OUTER = `M14 ${H} V214 C14 118 104 50 200 14 C296 50 386 118 386 214 V${H} Z`;
@@ -68,7 +71,7 @@ export function MirageScene() {
   const { x: rx, y: ry } = ROSETTE_C;
   return (
     <svg
-      viewBox={`0 0 ${W} ${H}`}
+      viewBox={`0 0 ${W} ${VIEW_H}`}
       aria-hidden="true"
       className="mirage-scene h-auto w-full"
       data-testid="mirage-scene"
@@ -108,6 +111,27 @@ export function MirageScene() {
         <clipPath id="mirage-arch">
           <path d={ARCH_INNER} />
         </clipPath>
+        <linearGradient id="mirage-lake" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" style={{ stopColor: "var(--scene-horizon)", stopOpacity: 0.9 }} />
+          <stop offset="1" style={{ stopColor: "var(--scene-sky-low)", stopOpacity: 0.6 }} />
+        </linearGradient>
+        <radialGradient id="mirage-lake-fade" cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0.55" stopColor="white" />
+          <stop offset="1" stopColor="black" />
+        </radialGradient>
+        <mask id="mirage-lake-mask">
+          <ellipse cx="200" cy="368" rx="130" ry="13" fill="url(#mirage-lake-fade)" />
+        </mask>
+        {/* Static turbulence: the wobble of hot air (motion comes from CSS, so it can stop). */}
+        <filter id="mirage-wobble" x="-10%" y="-50%" width="120%" height="200%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.02 0.35" numOctaves="2" seed="4" />
+          <feDisplacementMap in="SourceGraphic" scale="5" />
+        </filter>
+        <linearGradient id="mirage-floor" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" style={{ stopColor: "var(--color-accent)", stopOpacity: 0 }} />
+          <stop offset="0.5" style={{ stopColor: "var(--color-accent)", stopOpacity: 0.9 }} />
+          <stop offset="1" style={{ stopColor: "var(--color-accent)", stopOpacity: 0 }} />
+        </linearGradient>
         <filter id="mirage-blur" x="-50%" y="-50%" width="200%" height="200%">
           <feGaussianBlur stdDeviation="4" />
         </filter>
@@ -213,6 +237,44 @@ export function MirageScene() {
 
         <path d={SKYLINE} style={{ fill: "var(--scene-skyline)" }} opacity="0.85" />
         <path d={DUNE_FAR} fill="url(#mirage-dune-far)" />
+
+        {/* The mirage: a shimmering lake that mirrors the skyline. */}
+        <g mask="url(#mirage-lake-mask)" filter="url(#mirage-wobble)">
+          <g className="mirage-haze" style={{ transformOrigin: "200px 368px" }}>
+            <rect x="60" y="352" width="280" height="32" fill="url(#mirage-lake)" />
+            <path
+              d={SKYLINE}
+              transform="translate(0 708) scale(1 -1)"
+              style={{ fill: "var(--scene-skyline)" }}
+              opacity="0.55"
+            />
+            <g
+              style={{ stroke: "var(--color-gold-light)" }}
+              strokeWidth="0.7"
+              strokeLinecap="round"
+              opacity="0.8"
+            >
+              <line x1="90" y1="362" x2="310" y2="362" className="mirage-glint" />
+              <line
+                x1="110"
+                y1="370"
+                x2="290"
+                y2="370"
+                className="mirage-glint"
+                style={{ animationDelay: "-1.4s" }}
+              />
+              <line
+                x1="140"
+                y1="377"
+                x2="260"
+                y2="377"
+                className="mirage-glint"
+                style={{ animationDelay: "-2.2s" }}
+              />
+            </g>
+          </g>
+        </g>
+
         <path d={DUNE_MID} fill="url(#mirage-dune-mid)" />
         <path d={DUNE_NEAR} fill="url(#mirage-dune-near)" />
 
@@ -228,6 +290,25 @@ export function MirageScene() {
           ))}
         </g>
       </g>
+
+      {/* Plinth: a gold floor line with a soft glow and a centre star. */}
+      <ellipse cx="200" cy={H + 6} rx="200" ry="14" fill="url(#mirage-floor)" opacity="0.25" />
+      <line x1="0" y1={H + 0.5} x2={W} y2={H + 0.5} stroke="url(#mirage-floor)" strokeWidth="1.4" />
+      <line
+        x1="40"
+        y1={H + 12}
+        x2={W - 40}
+        y2={H + 12}
+        stroke="url(#mirage-floor)"
+        strokeWidth="0.7"
+        opacity="0.7"
+      />
+      <polygon
+        points={starPoints(200, H + 12, 7, 7 * KHATAM_RATIO, 8)}
+        fill="url(#mirage-gold)"
+        style={{ stroke: "var(--color-bg)" }}
+        strokeWidth="1"
+      />
 
       {/* Double gold frame + keystone star. */}
       <path d={ARCH_OUTER} fill="none" stroke="url(#mirage-gold)" strokeWidth="1.6" />

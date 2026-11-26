@@ -25,8 +25,20 @@ Visitors chat with an AI persona of Talha that answers in first person, grounded
 - 20 requests per IP per 10 min (in-memory; swappable for Redis).
 - At most 20 messages per conversation (older ones are dropped server-side); 1,000 chars per user message.
 
+## Code
+- `web/src/lib/twin/system-prompt.ts`: rules + the whole profile (as YAML) → system prompt.
+- `web/src/lib/twin/openrouter.ts`: streaming `fetch`, model fallback, SSE → plain-text stream.
+- `web/src/lib/rate-limit.ts`: `RateLimiter` interface + in-memory sliding window; `getClientIp()`.
+- `web/src/app/api/chat/route.ts`: validation, truncation, rate limit, streaming response (`X-Accel-Buffering: no`).
+- `web/src/components/twin/`: `TwinProvider` (one shared conversation in `sessionStorage`), `TwinChat`, `TwinLauncher` (slide-over), safe `Markdown` renderer (React elements only, never raw HTML).
+- Entry points: floating launcher (all pages except `/twin`), home teaser, `/twin`, command palette (`twin`), terminal (`twin <question>`).
+
+## Checks
+- `npm run check:secrets` (after a build) fails if a server-only env name, its value, or an OpenRouter-shaped key appears in `.next/static`. CI builds with a canary key and runs it.
+- Server logs record only upstream status and model names, never message content.
+
 ## Decision
 [003-openrouter-for-digital-twin](../decisions/003-openrouter-for-digital-twin.md)
 
 ## Spec
-[005-digital-twin](../../specs/backlog/005-digital-twin.md)
+[005-digital-twin](../../specs/completed/005-digital-twin.md)

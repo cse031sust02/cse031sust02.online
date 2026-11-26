@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { fuzzyFilter } from "@/lib/nerd/fuzzy";
+import { useTwinOptional } from "@/components/twin/TwinProvider";
 import { useNerd } from "./NerdProvider";
 import { type PaletteItem, buildPaletteItems } from "./palette-items";
 import { scrollToSection } from "./scroll";
@@ -23,6 +24,7 @@ function PaletteDialog({
 }) {
   const { toggleCrt, toggleMatrix } = useNerd();
   const router = useRouter();
+  const twin = useTwinOptional();
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -45,7 +47,10 @@ function PaletteDialog({
     if (action.type === "scroll") {
       if (!scrollToSection(action.target)) router.push(`/#${action.target}`);
     } else if (action.type === "open") window.open(action.url, "_blank", "noopener,noreferrer");
-    else if (action.type === "toggle-crt") toggleCrt();
+    else if (action.type === "open-twin") {
+      if (twin) twin.setOpen(true);
+      else router.push("/twin");
+    } else if (action.type === "toggle-crt") toggleCrt();
     else toggleMatrix();
   };
 

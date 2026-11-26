@@ -6,7 +6,10 @@ import { MatrixMode } from "@/components/nerd/MatrixMode";
 import { NerdProvider } from "@/components/nerd/NerdProvider";
 import { ScanlineOverlay } from "@/components/nerd/ScanlineOverlay";
 import { PREPAINT_SCRIPT } from "@/components/nerd/storage";
+import { TwinLauncher } from "@/components/twin/TwinLauncher";
+import { TwinProvider } from "@/components/twin/TwinProvider";
 import { getProfile } from "@/lib/content/load-profile";
+import { suggestedPrompts } from "@/lib/twin/suggested-prompts";
 import "@/styles/globals.css";
 
 const mono = JetBrains_Mono({ variable: "--font-jetbrains-mono", subsets: ["latin"] });
@@ -45,11 +48,17 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="min-h-dvh">
         <NerdProvider>
-          <BootSequence lines={bootLines} />
-          {children}
-          <MatrixMode />
-          <CommandPalette links={links} />
-          <ScanlineOverlay />
+          <TwinProvider
+            prompts={suggestedPrompts(profile)}
+            ownerName={profile.basics.name.split(" ")[0]}
+          >
+            <BootSequence lines={bootLines} />
+            {children}
+            <MatrixMode />
+            <TwinLauncher />
+            <CommandPalette links={links} />
+            <ScanlineOverlay />
+          </TwinProvider>
         </NerdProvider>
       </body>
     </html>

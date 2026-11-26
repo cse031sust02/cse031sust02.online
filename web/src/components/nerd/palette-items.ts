@@ -3,6 +3,7 @@ import { NAV_ITEMS } from "@/config/nav";
 export type PaletteAction =
   | { type: "scroll"; target: string }
   | { type: "open"; url: string }
+  | { type: "open-twin" }
   | { type: "toggle-crt" }
   | { type: "toggle-matrix" };
 
@@ -32,7 +33,7 @@ export function buildPaletteItems(links: { label: string; url: string }[]): Pale
       id: "twin",
       label: "twin: chat with my digital twin",
       hint: "./twin --chat",
-      action: { type: "scroll", target: "twin" },
+      action: { type: "open-twin" },
     },
     {
       id: "theme-crt",

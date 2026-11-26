@@ -7,7 +7,17 @@ import { describe, expect, it } from "vitest";
 import { parseProfile } from "@/lib/content/parse";
 import { containsEmail, containsPhone } from "@/lib/content/privacy";
 import { makeFixtureProfile } from "@/test/fixture-profile";
-import { HomeSections } from "./HomeSections";
+import { TwinProvider } from "@/components/twin/TwinProvider";
+import type { Profile } from "@/lib/content/schema";
+import { HomeSections as Sections } from "./HomeSections";
+
+function HomeSections({ profile }: { profile: Profile }) {
+  return (
+    <TwinProvider prompts={["Q?"]} ownerName="Ada">
+      <Sections profile={profile} />
+    </TwinProvider>
+  );
+}
 
 describe("HomeSections", () => {
   it("renders every experience, product, skill group, education, certification and award", () => {

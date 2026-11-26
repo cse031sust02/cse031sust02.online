@@ -11,7 +11,7 @@ Visitors can message Talha without the site revealing any email address.
 
 ## Requirements
 - Terminal-styled form: name (≤100), email (valid), message (10–5000), hidden honeypot, hidden render timestamp.
-- `web/src/lib/contact/mailer.ts`: nodemailer SMTP transport from env; `Reply-To` = visitor email; subject `[cse031sust02.dev] Message from <name>`.
+- `web/src/lib/contact/mailer.ts`: nodemailer SMTP transport from env; `Reply-To` = visitor email; subject `[cse031sust02.online] Message from <name>`.
 - `POST /api/contact` (Node runtime): zod-validate, honeypot/timing checks, rate limit 3 per IP per 10 min, optional Turnstile verification.
 - The terminal `contact` command and palette entry scroll to and focus the form.
 

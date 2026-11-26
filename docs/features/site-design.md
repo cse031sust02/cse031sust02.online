@@ -57,7 +57,7 @@ Nav items (label, anchor, terminal command) live in `web/src/config/nav.ts`. The
 - Checked automatically: `web/e2e/a11y.spec.ts` (axe-core, WCAG 2.1 A/AA) and `web/e2e/layout.spec.ts` (no horizontal scroll at 360px).
 
 ## SEO & security
-- Metadata (title template, description, canonical, Open Graph, Twitter) is built from `profile.yaml` + `NEXT_PUBLIC_SITE_URL` (inlined at build time; default `https://cse031sust02.dev`).
+- Metadata (title template, description, canonical, Open Graph, Twitter) is built from `profile.yaml` + `NEXT_PUBLIC_SITE_URL` (inlined at build time; default `https://cse031sust02.online`).
 - `/opengraph-image` (1200×630 PNG, terminal card), `icon.svg`, `apple-icon`, `/sitemap.xml` (routes from `web/src/lib/site.ts`), `/robots.txt` (disallows `/api/`).
 - JSON-LD `Person` on `/`: name, job title, `sameAs` links, skills, education. Never email or phone.
 - Custom 404: "404: command not found".

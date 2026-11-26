@@ -31,7 +31,7 @@ export function generateMetadata(): Metadata {
     openGraph: {
       type: "profile",
       url: "/",
-      siteName: "cse031sust02.dev",
+      siteName: "cse031sust02.online",
       title: defaultTitle,
       description: basics.tagline,
     },

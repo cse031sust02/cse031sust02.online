@@ -1,4 +1,4 @@
-# cse031sust02.dev
+# cse031sust02.online
 
 Personal site of **Talha Ibne Imam** (Engineering Manager, AI SaaS). It's styled as "TalhaOS", a retro terminal: a CV-driven portfolio plus a **Digital Twin** chat powered by OpenRouter.
 
@@ -8,7 +8,7 @@ Personal site of **Talha Ibne Imam** (Engineering Manager, AI SaaS). It's styled
 ## Repository layout
 
 ```
-cse031sust02.dev/
+cse031sust02.online/
 ├── web/                  # the Next.js app (source, config, tests, Dockerfile, content/)
 ├── docs/                 # features/, decisions/ (ADRs), deployment/
 ├── specs/                # backlog/ → active/ → completed/

@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const SITE = "https://cse031sust02.dev"; // e2e builds without NEXT_PUBLIC_SITE_URL → default
+const SITE = "https://cse031sust02.online"; // e2e builds without NEXT_PUBLIC_SITE_URL → default
 
 test("sitemap.xml lists the site URLs", async ({ request }) => {
   const res = await request.get("/sitemap.xml");

@@ -23,7 +23,7 @@ The same build runs everywhere: a standalone Node server (`web/.next/standalone/
 
 | Variable | Required | When it's read | Notes |
 |---|---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | yes | **build** | e.g. `https://cse031sust02.dev`. Used for canonical URLs, the sitemap and OG. Docker: pass it as a build arg. |
+| `NEXT_PUBLIC_SITE_URL` | yes | **build** | e.g. `https://cse031sust02.online`. Used for canonical URLs, the sitemap and OG. Docker: pass it as a build arg. |
 | `OPENROUTER_API_KEY` | for the twin | runtime | Without it the twin shows "twin offline". |
 | `OPENROUTER_MODEL` | no | runtime | Comma-separated fallback list. |
 | `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM` | for the contact form | runtime | Any SMTP provider (examples in [contact-form.md](../features/contact-form.md#env)). |
@@ -45,7 +45,7 @@ Never commit real values. Keep them in the host's secret settings or in `web/.en
 
 Tested shape: Ubuntu 24.04 VPS, Docker Engine + Compose plugin, Nginx on the host for TLS.
 
-1. **DNS:** point `A` (and `AAAA` if you have IPv6) records for `cse031sust02.dev` and `www` at the VPS IP.
+1. **DNS:** point `A` (and `AAAA` if you have IPv6) records for `cse031sust02.online` and `www` at the VPS IP.
 2. **Install Docker, Nginx and certbot:**
    ```bash
    sudo apt update && sudo apt install -y nginx certbot python3-certbot-nginx git
@@ -54,7 +54,7 @@ Tested shape: Ubuntu 24.04 VPS, Docker Engine + Compose plugin, Nginx on the hos
    ```
 3. **Get the code and configure:**
    ```bash
-   git clone <your-repo-url> cse031sust02.dev && cd cse031sust02.dev
+   git clone <your-repo-url> cse031sust02.online && cd cse031sust02.online
    cp web/.env.example web/.env && chmod 600 web/.env
    nano web/.env            # fill in OPENROUTER_API_KEY, SMTP_*, CONTACT_TO_EMAIL
    ```
@@ -67,23 +67,23 @@ Tested shape: Ubuntu 24.04 VPS, Docker Engine + Compose plugin, Nginx on the hos
    ```
 5. **Build and start:**
    ```bash
-   NEXT_PUBLIC_SITE_URL=https://cse031sust02.dev docker compose up -d --build
+   NEXT_PUBLIC_SITE_URL=https://cse031sust02.online docker compose up -d --build
    curl -s http://127.0.0.1:3000/api/health     # {"status":"ok"}
    ```
 6. **Nginx + TLS:**
    ```bash
-   sudo cp docs/deployment/nginx/cse031sust02.dev.conf /etc/nginx/sites-available/
-   sudo ln -s /etc/nginx/sites-available/cse031sust02.dev.conf /etc/nginx/sites-enabled/
+   sudo cp docs/deployment/nginx/cse031sust02.online.conf /etc/nginx/sites-available/
+   sudo ln -s /etc/nginx/sites-available/cse031sust02.online.conf /etc/nginx/sites-enabled/
    sudo rm -f /etc/nginx/sites-enabled/default
    # First issue the certificate (certbot uses a temporary HTTP setup):
-   sudo certbot certonly --nginx -d cse031sust02.dev -d www.cse031sust02.dev
+   sudo certbot certonly --nginx -d cse031sust02.online -d www.cse031sust02.online
    sudo nginx -t && sudo systemctl reload nginx
    ```
    Certbot sets up automatic renewal (`systemctl list-timers | grep certbot`).
 7. **Firewall:** `sudo ufw allow OpenSSH && sudo ufw allow 'Nginx Full' && sudo ufw enable`.
 8. Run the [smoke checklist](#post-deploy-smoke-checklist).
 
-**Update:** `git pull && NEXT_PUBLIC_SITE_URL=https://cse031sust02.dev docker compose up -d --build`.
+**Update:** `git pull && NEXT_PUBLIC_SITE_URL=https://cse031sust02.online docker compose up -d --build`.
 **Logs:** `docker compose logs -f web`. The container restarts automatically (`restart: unless-stopped`) and has a health check.
 
 ---
@@ -98,7 +98,7 @@ Tested shape: Ubuntu 24.04 VPS, Docker Engine + Compose plugin, Nginx on the hos
    ```
 3. Build:
    ```bash
-   git clone <your-repo-url> cse031sust02.dev && cd cse031sust02.dev/web
+   git clone <your-repo-url> cse031sust02.online && cd cse031sust02.online/web
    cp .env.example .env && chmod 600 .env && nano .env   # set NEXT_PUBLIC_SITE_URL here too
    npm ci && npm run build                                # also copies static assets + content
    ```
@@ -140,14 +140,14 @@ Same as [Hostinger VPS: Docker](#hostinger-vps-docker-recommended), with these A
    ```bash
    aws ecr create-repository --repository-name cse031sust02-web
    aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <acct>.dkr.ecr.<region>.amazonaws.com
-   docker build --build-arg NEXT_PUBLIC_SITE_URL=https://cse031sust02.dev -t <acct>.dkr.ecr.<region>.amazonaws.com/cse031sust02-web:latest ./web
+   docker build --build-arg NEXT_PUBLIC_SITE_URL=https://cse031sust02.online -t <acct>.dkr.ecr.<region>.amazonaws.com/cse031sust02-web:latest ./web
    docker push <acct>.dkr.ecr.<region>.amazonaws.com/cse031sust02-web:latest
    ```
    (On Apple Silicon add `--platform linux/amd64` to `docker build`.)
 2. App Runner → Create service → Container registry → ECR image. **Port 3000**. Health check: HTTP `/api/health`.
 3. Add runtime env vars. Store secrets in **Secrets Manager / SSM Parameter Store** and reference them.
 4. **Instances:** max concurrency default, **max instances 1** (in-memory rate limit).
-5. Custom domain: App Runner → Custom domains → add `cse031sust02.dev` and create the validation CNAMEs it shows.
+5. Custom domain: App Runner → Custom domains → add `cse031sust02.online` and create the validation CNAMEs it shows.
 6. Run the smoke checklist and confirm the twin streams through App Runner's proxy.
 
 ---
@@ -197,10 +197,10 @@ If supported:
 Replace `$SITE` with your URL.
 
 ```bash
-SITE=https://cse031sust02.dev
+SITE=https://cse031sust02.online
 curl -s  $SITE/api/health                       # {"status":"ok"}
 curl -sI $SITE/ | grep -iE 'content-security-policy|strict-transport-security|x-content-type-options'
-curl -s  $SITE/robots.txt                       # Sitemap: https://cse031sust02.dev/sitemap.xml
+curl -s  $SITE/robots.txt                       # Sitemap: https://cse031sust02.online/sitemap.xml
 curl -s  $SITE/sitemap.xml | grep '<loc>'       # absolute URLs with the right domain
 curl -s -o /dev/null -w '%{http_code}\n' $SITE/does-not-exist   # 404
 ```
@@ -225,6 +225,6 @@ In the browser:
 `.github/workflows/ci.yml` runs on pushes to `main`/`dev` and on pull requests:
 - **checks:** `npm ci`, lint, format check, typecheck, unit tests, build with canary secrets + `npm run check:secrets`, Playwright e2e.
 - **docker:** builds the image, waits for `/api/health`, and asserts the container doesn't run as root.
-- **nginx:** `nginx -t` on [the sample config](nginx/cse031sust02.dev.conf) via [`test-config.sh`](nginx/test-config.sh).
+- **nginx:** `nginx -t` on [the sample config](nginx/cse031sust02.online.conf) via [`test-config.sh`](nginx/test-config.sh).
 
 CI only verifies. It doesn't deploy. Deployment stays a manual step per the guides above.

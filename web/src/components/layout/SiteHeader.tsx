@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PaletteButton } from "@/components/nerd/PaletteButton";
 import { NAV_ITEMS } from "@/config/nav";
 
 export function SiteHeader({ handle }: { handle: string }) {
@@ -26,6 +27,7 @@ export function SiteHeader({ handle }: { handle: string }) {
             </li>
           ))}
         </ul>
+        <PaletteButton />
       </nav>
     </header>
   );

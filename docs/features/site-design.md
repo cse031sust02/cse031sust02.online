@@ -41,6 +41,14 @@ The site presents as a small retro-futuristic developer OS / terminal, while sta
 ## Navigation config
 Nav items (label, anchor, terminal command) live in `web/src/config/nav.ts`. The header, section titles and (later) the command palette and sitemap read from it, so adding `/blog` or `/lab` is a config change.
 
+## Implementation notes
+- A tiny inline script in `<head>` applies `localStorage` state (`talhaos:booted`, `talhaos:crt`) to `<html data-booted data-crt>` before first paint, so returning visitors never see the boot screen flash. Without JS, the boot screen fades out on its own after ~2.5 s.
+- The ASCII name is generated from `basics.name` (`web/src/lib/nerd/ascii-font.ts`) and drawn as SVG blocks.
+- Terminal commands are a pure parser (`web/src/lib/terminal/commands.ts`) fed by a serializable slice of the profile.
+- Matrix rain pauses when off-screen (IntersectionObserver) or when the tab is hidden, and never animates with reduced motion.
+- Every keyboard feature has a clickable equivalent: header `⌘K` button, footer CRT/matrix toggles.
+- No animation library is used (CSS + canvas only), which keeps the JS bundle small.
+
 ## Accessibility rules
 - Every terminal feature has a normal clickable equivalent.
 - WCAG AA contrast, visible focus, semantic landmarks.
@@ -49,4 +57,4 @@ Nav items (label, anchor, terminal command) live in `web/src/config/nav.ts`. The
 - Checked automatically: `web/e2e/a11y.spec.ts` (axe-core, WCAG 2.1 A/AA) and `web/e2e/layout.spec.ts` (no horizontal scroll at 360px).
 
 ## Specs
-[003-site-sections](../../specs/completed/003-site-sections.md), [004-nerd-layer](../../specs/backlog/004-nerd-layer.md)
+[003-site-sections](../../specs/completed/003-site-sections.md), [004-nerd-layer](../../specs/completed/004-nerd-layer.md)

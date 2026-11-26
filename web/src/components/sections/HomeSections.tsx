@@ -6,6 +6,7 @@ import { Experience } from "./Experience";
 import { Hero } from "./Hero";
 import { Products } from "./Products";
 import { Skills } from "./Skills";
+import { TerminalSection } from "./TerminalSection";
 import { TwinTeaser } from "./TwinTeaser";
 
 /** All home-page sections, in order, rendered from a profile. */
@@ -19,6 +20,7 @@ export function HomeSections({ profile }: { profile: Profile }) {
       <Skills profile={profile} />
       <TwinTeaser profile={profile} />
       <Credentials profile={profile} />
+      <TerminalSection profile={profile} />
       <Contact profile={profile} />
     </>
   );

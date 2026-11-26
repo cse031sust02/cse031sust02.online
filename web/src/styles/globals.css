@@ -58,6 +58,56 @@ body {
   }
 }
 
+/* ── Boot sequence ─────────────────────────────────────────────────────────── */
+html[data-booted] .boot-overlay {
+  display: none;
+}
+/* No-JS fallback: the overlay fades out by itself. */
+.boot-overlay {
+  animation: boot-out 0.3s ease-in 2.4s forwards;
+}
+.boot-line {
+  opacity: 0;
+  animation: boot-in 0.15s ease-out forwards;
+}
+@keyframes boot-in {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes boot-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+/* ── CRT scanlines ─────────────────────────────────────────────────────────── */
+.crt-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 2px,
+    rgb(0 0 0 / var(--scanline-opacity)) 3px,
+    transparent 4px
+  );
+}
+html[data-crt="off"] .crt-overlay {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boot-overlay,
+  .crt-overlay {
+    display: none;
+  }
+}
+
 @keyframes blink {
   50% {
     opacity: 0;

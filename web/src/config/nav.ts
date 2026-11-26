@@ -18,6 +18,7 @@ export const NAV_ITEMS: readonly NavItem[] = [
   { id: "skills", label: "Skills", href: "/#skills", command: "tree ~/skills" },
   { id: "twin", label: "Twin", href: "/#twin", command: "./twin --chat" },
   { id: "credentials", label: "Credentials", href: "/#credentials", command: "cat credentials" },
+  { id: "terminal", label: "Terminal", href: "/#terminal", command: "./talhaos --interactive" },
   { id: "contact", label: "Contact", href: "/#contact", command: "ping talha" },
 ];
 

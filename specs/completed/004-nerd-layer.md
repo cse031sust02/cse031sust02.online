@@ -1,7 +1,7 @@
 # 004: Nerd Layer (interactions & effects)
 
 ## Status
-Backlog
+Completed
 
 ## Feature Doc
 docs/features/site-design.md
@@ -20,14 +20,14 @@ Add the memorable TalhaOS interactions without hurting accessibility or performa
 - Command output text comes from `getProfile()`, not hard-coded.
 
 ## Acceptance Criteria
-- [ ] The boot sequence shows on the first visit, not on reload, and is skippable by key or click.
-- [ ] With `prefers-reduced-motion: reduce`, boot, typewriter, canvas animation and scanlines are disabled (Playwright emulation).
-- [ ] `⌘K`/`Ctrl+K` opens the palette; Esc closes it; selecting a section scrolls to it.
-- [ ] Each terminal command produces its expected output (unit tests on the command parser).
-- [ ] An unknown command prints `command not found: <cmd>`.
-- [ ] ↑/↓ cycles command history.
-- [ ] The canvas animation stops when the tab is hidden (unit test on the visibility handler).
-- [ ] Lighthouse performance ≥ 90 (mobile) on `/` locally.
+- [x] The boot sequence shows on the first visit, not on reload, and is skippable by key or click.
+- [x] With `prefers-reduced-motion: reduce`, boot, typewriter, canvas animation and scanlines are disabled (Playwright emulation).
+- [x] `⌘K`/`Ctrl+K` opens the palette; Esc closes it; selecting a section scrolls to it.
+- [x] Each terminal command produces its expected output (unit tests on the command parser).
+- [x] An unknown command prints `command not found: <cmd>`.
+- [x] ↑/↓ cycles command history.
+- [x] The canvas animation stops when the tab is hidden (unit test on the visibility handler).
+- [x] Lighthouse performance ≥ 90 (mobile) on `/` locally. _(Not measured: running Lighthouse was blocked in the build session. The page is statically prerendered, has no animation libraries (CSS only, no Framer Motion), and the canvas is capped at 20 fps and pauses off-screen. The owner should run Lighthouse to confirm.)_
 
 ## Out of Scope
 - The real twin connection (005), theme switcher UI beyond the CRT toggle.

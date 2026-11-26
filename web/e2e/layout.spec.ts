@@ -1,9 +1,11 @@
 import { expect, test } from "@playwright/test";
+import { skipBoot } from "./helpers";
 
 test.describe("mobile layout", () => {
   test.use({ viewport: { width: 360, height: 740 } });
 
   test("has no horizontal scroll at 360px", async ({ page }) => {
+    await skipBoot(page);
     await page.goto("/");
     const overflow = await page.evaluate(
       () => document.documentElement.scrollWidth - document.documentElement.clientWidth,

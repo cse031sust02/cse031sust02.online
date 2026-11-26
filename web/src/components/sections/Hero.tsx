@@ -1,4 +1,7 @@
 import type { Profile } from "@/lib/content/schema";
+import { AsciiName } from "@/components/hero/AsciiName";
+import { Typewriter } from "@/components/hero/Typewriter";
+import { MatrixRain } from "@/components/nerd/MatrixRain";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 
 const ctaBase =
@@ -7,18 +10,24 @@ const ctaBase =
 export function Hero({ profile }: { profile: Profile }) {
   const { basics, links } = profile;
   return (
-    <section id="top" aria-labelledby="hero-heading" className="scroll-mt-20 py-12 sm:py-20">
-      <p className="mb-4 font-mono text-sm text-muted">
+    <section
+      id="top"
+      aria-labelledby="hero-heading"
+      className="relative isolate scroll-mt-20 py-12 sm:py-20"
+    >
+      <MatrixRain className="absolute inset-0 -z-10 size-full opacity-25 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
+      <AsciiName name={basics.name} />
+      <p className="mt-6 mb-4 font-mono text-sm text-muted">
         <span className="text-accent">{basics.handle}@talhaos</span>:~$ whoami
       </p>
       <h1
         id="hero-heading"
-        className="font-mono text-4xl font-bold tracking-tight text-accent text-glow sm:text-6xl"
+        className="font-mono text-3xl font-bold tracking-tight text-fg sm:text-5xl"
       >
         {basics.name}
       </h1>
       <p className="mt-3 font-mono text-lg text-accent-2 sm:text-xl">{basics.title}</p>
-      <p className="mt-4 max-w-2xl text-lg text-fg">{basics.tagline}</p>
+      <Typewriter text={basics.tagline} className="mt-4 min-h-[3.5rem] max-w-2xl text-lg text-fg" />
       <ul className="mt-8 flex flex-wrap gap-3">
         <li>
           <a

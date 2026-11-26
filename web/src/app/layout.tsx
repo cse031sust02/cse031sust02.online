@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import { BootSequence } from "@/components/nerd/BootSequence";
+import { CommandPalette } from "@/components/nerd/CommandPalette";
+import { MatrixMode } from "@/components/nerd/MatrixMode";
+import { NerdProvider } from "@/components/nerd/NerdProvider";
+import { ScanlineOverlay } from "@/components/nerd/ScanlineOverlay";
+import { PREPAINT_SCRIPT } from "@/components/nerd/storage";
 import { getProfile } from "@/lib/content/load-profile";
 import "@/styles/globals.css";
 
@@ -17,9 +23,35 @@ export function generateMetadata(): Metadata {
 }
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
+  const profile = getProfile();
+  const bootLines = [
+    `Loading profile: ${profile.basics.name}`,
+    `Mounting ~/experience (${profile.experience.length} commits)`,
+    `Mounting ~/products (${profile.products.length})`,
+    "Starting twin daemon",
+    "Welcome to TalhaOS",
+  ];
+  const links = profile.links.map(({ label, url }) => ({ label, url }));
+
   return (
-    <html lang="en" className={`${mono.variable} ${sans.variable} antialiased`}>
-      <body className="min-h-dvh">{children}</body>
+    // The pre-paint script sets data-booted / data-crt on <html> before hydration.
+    <html
+      lang="en"
+      className={`${mono.variable} ${sans.variable} antialiased`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: PREPAINT_SCRIPT }} />
+      </head>
+      <body className="min-h-dvh">
+        <NerdProvider>
+          <BootSequence lines={bootLines} />
+          {children}
+          <MatrixMode />
+          <CommandPalette links={links} />
+          <ScanlineOverlay />
+        </NerdProvider>
+      </body>
     </html>
   );
 }

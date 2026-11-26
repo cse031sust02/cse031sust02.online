@@ -1,11 +1,12 @@
 import type { Profile } from "@/lib/content/schema";
+import { NerdToggles } from "@/components/nerd/NerdToggles";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 
 export function SiteFooter({ profile }: { profile: Profile }) {
   const { basics, links } = profile;
   return (
     <footer className="border-t border-border">
-      <div className="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-8 font-mono text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
+      <div className="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-8 font-mono text-xs text-muted sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
         <p>
           <span className="text-accent">uptime:</span> {basics.years_of_experience}+ years ·{" "}
           <span className="text-accent">built with</span> Next.js, Tailwind, too much coffee
@@ -19,6 +20,11 @@ export function SiteFooter({ profile }: { profile: Profile }) {
             </li>
           ))}
         </ul>
+        <p>
+          <kbd className="text-accent">⌘K</kbd> palette ·{" "}
+          <kbd className="text-accent">↑↑↓↓←→←→BA</kbd> ???
+        </p>
+        <NerdToggles />
         <p>© {basics.name}</p>
       </div>
     </footer>

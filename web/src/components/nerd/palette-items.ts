@@ -1,0 +1,50 @@
+import { NAV_ITEMS } from "@/config/nav";
+
+export type PaletteAction =
+  | { type: "scroll"; target: string }
+  | { type: "open"; url: string }
+  | { type: "toggle-crt" }
+  | { type: "toggle-matrix" };
+
+export type PaletteItem = {
+  id: string;
+  label: string;
+  hint: string;
+  action: PaletteAction;
+};
+
+/** Palette entries: every nav section, the profile links, and the nerd toggles. */
+export function buildPaletteItems(links: { label: string; url: string }[]): PaletteItem[] {
+  return [
+    ...NAV_ITEMS.map((item) => ({
+      id: `go-${item.id}`,
+      label: `Go to ${item.label}`,
+      hint: item.command,
+      action: { type: "scroll", target: item.id } as const,
+    })),
+    ...links.map((link) => ({
+      id: `open-${link.label.toLowerCase()}`,
+      label: `open ${link.label.toLowerCase()}`,
+      hint: link.url.replace(/^https?:\/\//, ""),
+      action: { type: "open", url: link.url } as const,
+    })),
+    {
+      id: "twin",
+      label: "twin: chat with my digital twin",
+      hint: "./twin --chat",
+      action: { type: "scroll", target: "twin" },
+    },
+    {
+      id: "theme-crt",
+      label: "theme: toggle CRT scanlines",
+      hint: "crt",
+      action: { type: "toggle-crt" },
+    },
+    {
+      id: "matrix",
+      label: "matrix: toggle matrix mode",
+      hint: "↑↑↓↓←→←→BA",
+      action: { type: "toggle-matrix" },
+    },
+  ];
+}

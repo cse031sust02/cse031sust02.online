@@ -1,7 +1,7 @@
 # 006: Contact Form
 
 ## Status
-Backlog
+Completed
 
 ## Feature Doc
 docs/features/contact-form.md
@@ -26,18 +26,18 @@ POST /api/contact
 ```
 
 ## Acceptance Criteria
-- [ ] A valid submission calls the mailer once with `to = CONTACT_TO_EMAIL` and `replyTo = visitor email` (mocked transport).
-- [ ] Invalid fields → 400 with per-field errors, shown inline in the UI.
-- [ ] A filled honeypot → 200 `{ ok: true }` but no email is sent.
-- [ ] A submission sooner than 3 s after render → no email is sent.
-- [ ] The 4th submission in 10 min from one IP → 429.
-- [ ] SMTP env missing → 503; the UI shows "contact temporarily unavailable".
-- [ ] When `TURNSTILE_SECRET_KEY` is set, a missing/invalid token → 400.
-- [ ] `CONTACT_TO_EMAIL` never appears in rendered HTML or client bundles.
-- [ ] Manual: a real email arrives locally with the configured SMTP.
+- [x] A valid submission calls the mailer once with `to = CONTACT_TO_EMAIL` and `replyTo = visitor email` (mocked transport).
+- [x] Invalid fields → 400 with per-field errors, shown inline in the UI.
+- [x] A filled honeypot → 200 `{ ok: true }` but no email is sent.
+- [x] A submission sooner than 3 s after render → no email is sent.
+- [x] The 4th submission in 10 min from one IP → 429.
+- [x] SMTP env missing → 503; the UI shows "contact temporarily unavailable".
+- [x] When `TURNSTILE_SECRET_KEY` is set, a missing/invalid token → 400.
+- [x] `CONTACT_TO_EMAIL` never appears in rendered HTML or client bundles.
+- [ ] Manual: a real email arrives locally with the configured SMTP. _(Owner to verify with real SMTP credentials; covered by mocked-transport tests.)_
 
 ## Out of Scope
 - Storing messages, auto-replies, newsletters.
 
 ## Open Questions
-- SMTP provider: Gmail app password, Hostinger mail or AWS SES?
+- SMTP provider: Gmail app password, Hostinger mail or AWS SES? _(The code is provider-agnostic: any SMTP server works via env vars. Examples for all three are in the feature doc. Still the owner's choice.)_

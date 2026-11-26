@@ -30,6 +30,12 @@ export function buildPaletteItems(links: { label: string; url: string }[]): Pale
       action: { type: "open", url: link.url } as const,
     })),
     {
+      id: "contact",
+      label: "contact: send me a message",
+      hint: "ping talha",
+      action: { type: "scroll", target: "contact" },
+    },
+    {
       id: "twin",
       label: "twin: chat with my digital twin",
       hint: "./twin --chat",

@@ -56,5 +56,13 @@ Nav items (label, anchor, terminal command) live in `web/src/config/nav.ts`. The
 - Works from 360px wide; terminal and chat work with mobile keyboards.
 - Checked automatically: `web/e2e/a11y.spec.ts` (axe-core, WCAG 2.1 A/AA) and `web/e2e/layout.spec.ts` (no horizontal scroll at 360px).
 
+## SEO & security
+- Metadata (title template, description, canonical, Open Graph, Twitter) is built from `profile.yaml` + `NEXT_PUBLIC_SITE_URL` (inlined at build time; default `https://cse031sust02.dev`).
+- `/opengraph-image` (1200×630 PNG, terminal card), `icon.svg`, `apple-icon`, `/sitemap.xml` (routes from `web/src/lib/site.ts`), `/robots.txt` (disallows `/api/`).
+- JSON-LD `Person` on `/`: name, job title, `sameAs` links, skills, education. Never email or phone.
+- Custom 404: "404: command not found".
+- Security headers for every route in `web/next.config.ts`: CSP (self only, plus Cloudflare Turnstile), `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, `X-Frame-Options`, COOP. The CSP allows inline scripts because the pages are static (nonces would force dynamic rendering). HSTS belongs on the TLS-terminating proxy.
+- No CV download: the PDF contains private contact details.
+
 ## Specs
-[003-site-sections](../../specs/completed/003-site-sections.md), [004-nerd-layer](../../specs/completed/004-nerd-layer.md)
+[003-site-sections](../../specs/completed/003-site-sections.md), [004-nerd-layer](../../specs/completed/004-nerd-layer.md), [007-seo-and-polish](../../specs/completed/007-seo-and-polish.md)

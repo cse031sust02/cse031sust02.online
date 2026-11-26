@@ -27,7 +27,7 @@ Add the memorable TalhaOS interactions without hurting accessibility or performa
 - [x] An unknown command prints `command not found: <cmd>`.
 - [x] ↑/↓ cycles command history.
 - [x] The canvas animation stops when the tab is hidden (unit test on the visibility handler).
-- [x] Lighthouse performance ≥ 90 (mobile) on `/` locally. _(Not measured: running Lighthouse was blocked in the build session. The page is statically prerendered, has no animation libraries (CSS only, no Framer Motion), and the canvas is capped at 20 fps and pauses off-screen. The owner should run Lighthouse to confirm.)_
+- [ ] Lighthouse performance ≥ 90 (mobile) on `/` locally. _(Not measured: running Lighthouse was blocked in the build session. The page is statically prerendered, has no animation libraries (CSS only, no Framer Motion), and the canvas is capped at 20 fps and pauses off-screen. The owner should run Lighthouse to confirm.)_
 
 ## Out of Scope
 - The real twin connection (005), theme switcher UI beyond the CRT toggle.

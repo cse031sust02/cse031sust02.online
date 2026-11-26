@@ -7,8 +7,9 @@ import { getProfile } from "@/lib/content/load-profile";
 export function generateMetadata(): Metadata {
   const { basics } = getProfile();
   return {
-    title: `Digital Twin | ${basics.name}`,
+    title: "Digital Twin",
     description: `Chat with an AI twin of ${basics.name}, built from the CV.`,
+    alternates: { canonical: "/twin" },
   };
 }
 

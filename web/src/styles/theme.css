@@ -2,6 +2,10 @@
  * cse031sust02 design tokens: the ONLY place colors, fonts, radii and effects are defined.
  * The design is provisional: change values here to re-theme the whole site.
  * Tailwind utilities (bg-bg, text-accent, font-mono, …) map to these in globals.css.
+ *
+ * Themes: :root is the default "terminal" theme. Other themes override tokens under
+ * html[data-theme="<id>"] (ids in src/lib/theme/themes.ts). Theme-only decoration lives in
+ * src/styles/themes/<id>.css and uses these tokens only.
  */
 :root {
   /* Surfaces */
@@ -19,6 +23,8 @@
   --color-accent-2: #33d6ff; /* cyan */
   --color-highlight: #ffb547; /* amber */
   --color-danger: #ff5f56;
+  --color-gold-light: var(--color-accent);
+  --color-gold-deep: var(--color-accent);
 
   /* Window chrome dots */
   --color-dot-red: #ff5f56;
@@ -28,6 +34,9 @@
   /* Typography (font families are injected by next/font as CSS variables) */
   --font-mono-family: var(--font-jetbrains-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
   --font-sans-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  /* Headings. Terminal keeps them monospace. */
+  --font-display-family: var(--font-mono-family);
+  --font-calligraphy-family: serif;
 
   /* Shape & effects */
   --radius-window: 0.75rem;
@@ -35,4 +44,59 @@
   --glow-accent: 0 0 12px color-mix(in oklab, var(--color-accent) 45%, transparent);
   --glow-text: 0 0 8px color-mix(in oklab, var(--color-accent) 55%, transparent);
   --scanline-opacity: 0.06;
+}
+
+/*
+ * Mirage: Islamic heritage x future tech. Desert night, warm sand, gold leaf,
+ * turquoise tilework and terracotta dusk.
+ */
+html[data-theme="mirage"] {
+  /* Surfaces: deep indigo night with a warm cast */
+  --color-bg: #0e0b14;
+  --color-surface: #16121d;
+  --color-surface-2: #1e1926;
+  --color-border: #3b3029;
+
+  /* Text: sand */
+  --color-fg: #f3e9d6;
+  --color-muted: #bcab92;
+
+  /* Accents */
+  --color-accent: #e3b866; /* gold leaf */
+  --color-accent-2: #5fd0c4; /* turquoise tile */
+  --color-highlight: #ec8f5e; /* terracotta dusk */
+  --color-danger: #f0766b;
+  --color-gold-light: #f8e3a8;
+  --color-gold-deep: #a8782f;
+
+  --color-dot-red: var(--color-highlight);
+  --color-dot-yellow: var(--color-accent);
+  --color-dot-green: var(--color-accent-2);
+
+  /* Typography */
+  --font-display-family: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-calligraphy-family: var(--font-aref-ruqaa), "Amiri", "Noto Naskh Arabic", serif;
+
+  /* Shape & effects */
+  --radius-window: 1.25rem;
+  --radius-chip: 0.625rem;
+  --glow-accent:
+    0 0 0 1px color-mix(in oklab, var(--color-accent) 12%, transparent),
+    0 24px 70px -36px color-mix(in oklab, var(--color-accent) 45%, transparent);
+  --glow-text: 0 0 18px color-mix(in oklab, var(--color-accent) 40%, transparent);
+  --scanline-opacity: 0;
+  --pattern-opacity: 0.075;
+
+  /* Hero scene */
+  --scene-sky-top: #07061a;
+  --scene-sky-mid: #241540;
+  --scene-sky-low: #6b2f4f;
+  --scene-horizon: #f0a35e;
+  --scene-star: #fff4d6;
+  --scene-moon: #fbe7b0;
+  --scene-skyline: #2a1530;
+  --scene-dune-far: #6e3a3a;
+  --scene-dune-mid: #b0663f;
+  --scene-dune-near: #e3a564;
+  --scene-dune-shadow: #3d1f2a;
 }

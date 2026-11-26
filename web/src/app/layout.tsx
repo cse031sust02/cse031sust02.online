@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Aref_Ruqaa, Cormorant_Garamond, Inter, JetBrains_Mono } from "next/font/google";
 import { BootSequence } from "@/components/nerd/BootSequence";
 import { CommandPalette } from "@/components/nerd/CommandPalette";
 import { MatrixMode } from "@/components/nerd/MatrixMode";
@@ -15,6 +15,19 @@ import "@/styles/globals.css";
 
 const mono = JetBrains_Mono({ variable: "--font-jetbrains-mono", subsets: ["latin"] });
 const sans = Inter({ variable: "--font-inter", subsets: ["latin"] });
+// Mirage theme fonts. Not preloaded: browsers fetch them only when the Mirage theme uses them.
+const display = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  preload: false,
+});
+const calligraphy = Aref_Ruqaa({
+  variable: "--font-aref-ruqaa",
+  subsets: ["arabic"],
+  weight: ["700"],
+  preload: false,
+});
 
 // Loading the profile here validates content/profile.yaml at build time:
 // an invalid file fails `npm run build` with a readable error.
@@ -53,10 +66,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   const links = profile.links.map(({ label, url }) => ({ label, url }));
 
   return (
-    // The pre-paint script sets data-booted / data-crt on <html> before hydration.
+    // The pre-paint script sets data-booted / data-crt / data-theme on <html> before hydration.
     <html
       lang="en"
-      className={`${mono.variable} ${sans.variable} antialiased`}
+      className={`${mono.variable} ${sans.variable} ${display.variable} ${calligraphy.variable} antialiased`}
       suppressHydrationWarning
     >
       <head>

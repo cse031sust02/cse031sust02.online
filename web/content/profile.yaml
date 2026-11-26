@@ -13,6 +13,7 @@
 
 basics:
   name: Talha Ibne Imam
+  name_arabic: طلحة ابن إمام # calligraphy in the Mirage theme hero
   handle: cse031sust02
   title: Engineering Manager
   tagline: Building AI-powered SaaS products and the teams that ship them.

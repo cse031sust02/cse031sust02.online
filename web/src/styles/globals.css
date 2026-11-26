@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./theme.css";
+@import "./themes/mirage.css";
 
 /* Expose theme tokens as Tailwind utilities. Values live in theme.css only. */
 @theme inline {
@@ -15,6 +16,7 @@
   --color-danger: var(--color-danger);
   --font-mono: var(--font-mono-family);
   --font-sans: var(--font-sans-family);
+  --font-display: var(--font-display-family);
   --radius-window: var(--radius-window);
   --radius-chip: var(--radius-chip);
   --shadow-glow: var(--glow-accent);
@@ -43,6 +45,46 @@ body {
 ::selection {
   background: var(--color-accent);
   color: var(--color-bg);
+}
+
+/* ── Themes ────────────────────────────────────────────────────────────────── */
+/* Theme-specific markup is rendered for every theme; CSS shows the active one. */
+html:not([data-theme="mirage"]) :is(.theme-mirage, .theme-mirage-inline),
+html[data-theme="mirage"] :is(.theme-terminal, .theme-terminal-inline) {
+  display: none !important;
+}
+
+/* Theme switch: pulsing ring until the visitor has tried it. */
+.theme-switch-attention {
+  animation: theme-attention 2.2s ease-out infinite;
+}
+@keyframes theme-attention {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--color-accent) 55%, transparent);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 10px transparent;
+  }
+}
+.theme-callout {
+  animation: callout-in 0.35s ease-out 0.6s both;
+}
+@keyframes callout-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+/* Brief colour cross-fade while switching themes. */
+html.theme-switching,
+html.theme-switching * {
+  transition:
+    background-color 0.4s ease,
+    border-color 0.4s ease,
+    color 0.4s ease,
+    fill 0.4s ease !important;
 }
 
 .text-glow {
@@ -101,7 +143,8 @@ html[data-booted] .boot-overlay {
     transparent 4px
   );
 }
-html[data-crt="off"] .crt-overlay {
+html[data-crt="off"] .crt-overlay,
+html[data-theme="mirage"] .crt-overlay {
   display: none;
 }
 

@@ -34,6 +34,8 @@ const year = z
 
 export const basicsSchema = z.strictObject({
   name: text,
+  /** Optional Arabic-script name, drawn as calligraphy in the Mirage theme hero. */
+  name_arabic: text.optional(),
   handle: text,
   title: text,
   tagline: text,

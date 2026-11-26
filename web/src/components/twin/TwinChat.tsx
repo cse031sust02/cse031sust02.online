@@ -60,7 +60,7 @@ export function TwinChat({ autoFocus = false, className = "", actions }: TwinCha
   const followUps = prompts.filter((p) => !asked.has(p)).slice(0, 3);
   const showFollowUps = !streaming && last?.role === "assistant" && last.content !== "";
   const notice = status !== "idle" && status !== "streaming" ? STATUS_TEXT[status] : null;
-  const agentName = `${ownerName}'s AI Twin`;
+  const agentName = `${ownerName}'s AI Agent`;
 
   return (
     <div className={`flex min-h-0 flex-col ${className}`}>
@@ -91,7 +91,7 @@ export function TwinChat({ autoFocus = false, className = "", actions }: TwinCha
         ref={logRef}
         role="log"
         aria-live="polite"
-        aria-label="Conversation with the digital twin"
+        aria-label="Conversation with the AI agent"
         className="min-h-0 flex-1 space-y-4 overflow-y-auto px-4 py-4 text-sm"
       >
         {/* Greeting */}
@@ -121,7 +121,7 @@ export function TwinChat({ autoFocus = false, className = "", actions }: TwinCha
             return (
               <AgentBubble key={i}>
                 <span className="flex items-center gap-1 py-1" data-testid="twin-thinking">
-                  <span className="sr-only">The twin is thinking</span>
+                  <span className="sr-only">The AI agent is thinking</span>
                   <span aria-hidden="true" className="typing-dot" />
                   <span aria-hidden="true" className="typing-dot [animation-delay:150ms]" />
                   <span aria-hidden="true" className="typing-dot [animation-delay:300ms]" />
@@ -146,7 +146,7 @@ export function TwinChat({ autoFocus = false, className = "", actions }: TwinCha
               }
             >
               <div data-testid="twin-reply">
-                <span className="sr-only">Twin: </span>
+                <span className="sr-only">AI agent: </span>
                 <Markdown text={m.content} />
                 {isLast && streaming && (
                   <span aria-hidden="true" className="cursor-blink text-accent">
@@ -181,7 +181,7 @@ export function TwinChat({ autoFocus = false, className = "", actions }: TwinCha
       >
         <div className="flex items-end gap-2 rounded-2xl border border-border bg-bg p-1.5 pl-3 focus-within:border-accent focus-within:shadow-glow">
           <label htmlFor="twin-input" className="sr-only">
-            Ask the twin a question
+            Ask the AI agent a question
           </label>
           <textarea
             ref={inputRef}

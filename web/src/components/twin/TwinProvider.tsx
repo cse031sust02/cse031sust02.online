@@ -34,7 +34,7 @@ export const MAX_QUESTION_CHARS = 1000;
 const MAX_STORED_MESSAGES = 50;
 
 export const STATUS_TEXT: Record<Exclude<TwinStatus, "idle" | "streaming">, string> = {
-  offline: "twin offline: the AI twin isn't available right now. Please use the contact form.",
+  offline: "agent offline: the AI agent isn't available right now. Please use the contact form.",
   rate_limited: "Too many messages in a short time. Please wait a few minutes and try again.",
   error: "Something went wrong. Please try again.",
 };

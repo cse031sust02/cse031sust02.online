@@ -20,12 +20,12 @@ The site presents as a small retro-futuristic developer OS / terminal, while sta
 ## Home sections (in order)
 | # | Section | Terminal flavour | Content |
 |---|---|---|---|
-| 1 | Hero | `whoami` | ASCII name, title, tagline, CTAs: Chat with my twin, Contact, GitHub, LinkedIn |
+| 1 | Hero | `whoami` | ASCII name, title, tagline, CTAs: Chat with my AI Agent, Contact, GitHub, LinkedIn |
 | 2 | About | `cat about.md` | Summary (optional stat counters when `stats` is set in the profile) |
 | 3 | Experience | `git log --career` | Timeline styled as commits; expandable highlights + tech chips |
 | 4 | Products | `ls ~/products` | GitHub-repo-style cards with links |
 | 5 | Skills | `tree ~/skills` | Grouped skills tree |
-| 6 | Twin teaser | `./twin --chat` | Mini chat with suggested prompts → `/twin` |
+| 6 | AI Agent teaser | `./agent --chat` | Mini chat with suggested prompts → `/twin` |
 | 7 | Credentials | `cat credentials` | Education, certifications (verify links), awards |
 | 8 | Terminal | `$` | Interactive CLI |
 | 9 | Contact | `ping talha` | Contact form, GitHub, LinkedIn |
@@ -35,7 +35,7 @@ The site presents as a small retro-futuristic developer OS / terminal, while sta
 - **Boot sequence** on first visit (~1.5 s, skippable, remembered in `localStorage`).
 - **Typewriter** tagline under the ASCII name.
 - **Command palette** (`⌘K` / `Ctrl+K`): jump to sections, run commands (`open github`, `twin`, `theme`, `matrix`).
-- **Interactive terminal:** `help`, `whoami`, `ls products`, `cat experience`, `skills --tree`, `contact`, `clear`, `twin <question>`, `sudo make-coffee`.
+- **Interactive terminal:** `help`, `whoami`, `ls products`, `cat experience`, `skills --tree`, `contact`, `clear`, `agent <question>` (alias `twin`), `sudo make-coffee`.
 - **Easter eggs:** the Konami code toggles matrix mode; `rm -rf /` gives a joke reply.
 
 ## Navigation config

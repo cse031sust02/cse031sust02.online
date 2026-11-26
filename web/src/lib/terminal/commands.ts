@@ -15,7 +15,7 @@ export const HELP_LINES = [
   "  ls products      list products",
   "  cat experience   career log",
   "  skills --tree    skills as a tree",
-  "  twin <question>  ask my digital twin",
+  "  agent <question> ask my AI agent",
   "  contact          open the contact form",
   "  clear            clear the screen",
   "Shortcuts: ↑/↓ history · ⌘K / Ctrl+K command palette",
@@ -69,8 +69,9 @@ export function runCommand(rawInput: string, data: TerminalData): CommandResult 
       };
     case "clear":
       return { lines: [], action: { type: "clear" } };
-    case "twin":
-      if (rest === "") return { lines: ["usage: twin <question>"] };
+    case "agent":
+    case "twin": // legacy alias
+      if (rest === "") return { lines: ["usage: agent <question>"] };
       return { lines: [], action: { type: "twin", question: rest } };
     case "sudo":
       if (rest === "make-coffee") {

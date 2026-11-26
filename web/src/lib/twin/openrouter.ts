@@ -56,7 +56,7 @@ export async function streamChatCompletion(
           Authorization: `Bearer ${opts.apiKey}`,
           "Content-Type": "application/json",
           "HTTP-Referer": opts.siteUrl ?? "https://cse031sust02.online",
-          "X-Title": "cse031sust02.online Digital Twin",
+          "X-Title": "cse031sust02.online AI Agent",
         },
         body: JSON.stringify({
           model: models[0],

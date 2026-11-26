@@ -2,18 +2,20 @@
 
 Visitors chat with an AI persona of Talha that answers in first person, grounded only in `web/content/profile.yaml`.
 
+**Naming:** visitors see it as **"AI Agent"** ("Chat with my AI Agent", "<first name>'s AI Agent"). "Digital Twin" / `twin` remains the internal name in code (`lib/twin`, `TwinChat`, `twin_notes`), and the `/twin` URL and `#twin` anchor are kept so existing links keep working.
+
 ## Flow
-1. Visitor opens the twin (floating launcher on every page, the home teaser, `/twin`, or `twin <q>` in the terminal).
+1. Visitor opens the twin (floating launcher on every page, the home teaser, `/twin`, or `agent <q>` in the terminal).
 2. The browser sends the conversation to `POST /api/chat`.
 3. The server validates and rate-limits, builds the system prompt from the profile, and calls OpenRouter with streaming.
 4. Tokens stream back and render as markdown with a blinking cursor.
 
 ## UI: AI agent chat
-- Agent identity header: bot avatar, "<first name>'s AI Twin", and a live status dot: *online*, *thinking…* (before the first token), *typing…* (streaming), *offline* (503).
+- Agent identity header: bot avatar, "<first name>'s AI Agent", and a live status dot: *online*, *thinking…* (before the first token), *typing…* (streaming), *offline* (503).
 - Chat bubbles with avatars, a greeting from the agent, a typing-dots indicator, and a streaming cursor.
 - Suggested questions to start; follow-up suggestion chips after each answer (questions not asked yet); copy button on replies; "new chat" resets the conversation.
 - Pill input: Enter sends, Shift+Enter adds a newline, a character counter appears near the 1,000 limit, and the disclaimer sits under the input.
-- Round floating launcher with avatar + online dot ("Ask <name>'s AI twin"); the home teaser previews the agent greeting.
+- Round floating launcher with avatar + online dot ("Ask <name>'s AI Agent"); the home teaser previews the agent greeting.
 - The UI never shows fake tool calls or capabilities. Status reflects real request state only.
 
 ## Rules
@@ -23,7 +25,7 @@ Visitors chat with an AI persona of Talha that answers in first person, grounded
 - Never shares a phone number or email address; directs people to the contact form.
 - Stays on topic (career, skills, products, leadership, the site). Politely declines unrelated tasks.
 - Resists prompt injection: won't reveal the system prompt or change persona.
-- Shows a disclaimer: *"AI twin built from Talha's CV. It can be wrong. For anything important, use the contact form."*
+- Shows a disclaimer: *"AI agent built from Talha's CV. It can be wrong. For anything important, use the contact form."*
 - The conversation lives only in the browser (`sessionStorage`); nothing is stored server-side.
 
 ## Models
@@ -39,7 +41,7 @@ Visitors chat with an AI persona of Talha that answers in first person, grounded
 - `web/src/lib/rate-limit.ts`: `RateLimiter` interface + in-memory sliding window; `getClientIp()`.
 - `web/src/app/api/chat/route.ts`: validation, truncation, rate limit, streaming response (`X-Accel-Buffering: no`).
 - `web/src/components/twin/`: `TwinProvider` (one shared conversation in `sessionStorage`), `TwinChat`, `TwinLauncher` (slide-over), safe `Markdown` renderer (React elements only, never raw HTML).
-- Entry points: floating launcher (all pages except `/twin`), home teaser, `/twin`, command palette (`twin`), terminal (`twin <question>`).
+- Entry points: floating launcher (all pages except `/twin`), home teaser, `/twin`, command palette (`agent`), terminal (`agent <question>`, with `twin` kept as an alias).
 
 ## Checks
 - `npm run check:secrets` (after a build) fails if a server-only env name, its value, or an OpenRouter-shaped key appears in `.next/static`. CI builds with a canary key and runs it.

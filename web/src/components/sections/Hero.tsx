@@ -34,7 +34,7 @@ export function Hero({ profile }: { profile: Profile }) {
             href="#twin"
             className={`${ctaBase} border-accent bg-accent text-bg hover:bg-transparent hover:text-accent`}
           >
-            Chat with my twin
+            Chat with my AI Agent
           </a>
         </li>
         <li>

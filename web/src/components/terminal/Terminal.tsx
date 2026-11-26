@@ -40,14 +40,14 @@ export function Terminal({ data, prompt, onTwin }: TerminalProps) {
     else {
       const ask = onTwin ?? twin?.send;
       if (!ask) {
-        append("output", ["twin: offline for now. Try again soon, or use the contact form."]);
+        append("output", ["agent: offline for now. Try again soon, or use the contact form."]);
         return;
       }
-      append("output", ["twin: thinking…"]);
-      const reply = (await ask(action.question)) || "twin: no answer.";
+      append("output", ["agent: thinking…"]);
+      const reply = (await ask(action.question)) || "agent: no answer.";
       append(
         "output",
-        reply.split("\n").map((l) => (l ? `twin> ${l}` : "")),
+        reply.split("\n").map((l) => (l ? `agent> ${l}` : "")),
       );
     }
   };

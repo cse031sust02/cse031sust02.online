@@ -46,7 +46,7 @@ export function TwinLauncher() {
             </span>
           </span>
           <span className="font-medium group-hover:text-accent">
-            Ask {ownerName}&apos;s AI twin
+            Ask {ownerName}&apos;s AI Agent
           </span>
         </button>
       )}
@@ -60,7 +60,7 @@ export function TwinLauncher() {
           <div
             role="dialog"
             aria-modal="true"
-            aria-label="Chat with my digital twin"
+            aria-label="Chat with my AI agent"
             className="absolute top-0 right-0 flex h-dvh w-full max-w-md flex-col border-l border-border bg-surface shadow-glow"
           >
             <TwinChat

@@ -37,8 +37,8 @@ export function buildPaletteItems(links: { label: string; url: string }[]): Pale
     },
     {
       id: "twin",
-      label: "twin: chat with my digital twin",
-      hint: "./twin --chat",
+      label: "agent: chat with my AI agent",
+      hint: "./agent --chat",
       action: { type: "open-twin" },
     },
     {

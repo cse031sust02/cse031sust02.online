@@ -3,12 +3,12 @@ import { skipBoot } from "./helpers";
 
 test.beforeEach(async ({ page }) => skipBoot(page));
 
-test("shows 'twin offline' when the server has no API key", async ({ page }) => {
+test("shows 'agent offline' when the server has no API key", async ({ page }) => {
   // The e2e server runs without OPENROUTER_API_KEY.
   await page.goto("/twin");
-  await page.getByRole("textbox", { name: /ask the twin/i }).fill("Hello?");
+  await page.getByRole("textbox", { name: /ask the ai agent/i }).fill("Hello?");
   await page.keyboard.press("Enter");
-  await expect(page.getByRole("status")).toContainText("twin offline");
+  await expect(page.getByRole("status")).toContainText("agent offline");
 });
 
 test("streams a markdown reply in the slide-over without executing HTML", async ({ page }) => {
@@ -20,8 +20,8 @@ test("streams a markdown reply in the slide-over without executing HTML", async 
     }),
   );
   await page.goto("/");
-  await page.getByRole("button", { name: /^Ask .+ AI twin$/ }).click();
-  const dialog = page.getByRole("dialog", { name: /digital twin/i });
+  await page.getByRole("button", { name: /^Ask .+ AI Agent$/ }).click();
+  const dialog = page.getByRole("dialog", { name: /ai agent/i });
   await expect(dialog).toBeVisible();
   await dialog.getByRole("textbox").fill("What do you build?");
   await dialog.getByRole("button", { name: "send" }).click();
@@ -74,13 +74,13 @@ test("agent UI: thinking indicator, status, follow-up chips and new chat", async
   await expect(page.getByTestId("twin-reply")).toHaveCount(0);
 });
 
-test("terminal 'twin <q>' asks the twin", async ({ page }) => {
+test("terminal 'agent <q>' asks the AI agent", async ({ page }) => {
   await page.route("/api/chat", (route) => route.fulfill({ status: 200, body: "Terminal answer" }));
   await page.goto("/#terminal");
   const input = page.getByRole("textbox", { name: /terminal command/i });
-  await input.fill("twin hi there");
+  await input.fill("agent hi there");
   await input.press("Enter");
   await expect(page.getByRole("log", { name: "Terminal output" })).toContainText(
-    "twin> Terminal answer",
+    "agent> Terminal answer",
   );
 });

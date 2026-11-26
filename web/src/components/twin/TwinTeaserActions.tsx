@@ -7,7 +7,7 @@ import { useTwin } from "./TwinProvider";
 /** Home-page twin teaser: an agent greeting; suggested prompts open the slide-over chat. */
 export function TwinTeaserActions() {
   const { prompts, openWith, setOpen, ownerName, status } = useTwin();
-  const agentName = `${ownerName}'s AI Twin`;
+  const agentName = `${ownerName}'s AI Agent`;
   return (
     <div className="mt-6 rounded-window border border-border bg-bg p-4 sm:p-5">
       <div className="flex items-start gap-3">

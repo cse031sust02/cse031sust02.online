@@ -46,7 +46,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     `Loading profile: ${profile.basics.name}`,
     `Mounting ~/experience (${profile.experience.length} commits)`,
     `Mounting ~/products (${profile.products.length})`,
-    "Starting twin daemon",
+    "Starting agent daemon",
     "Welcome to TalhaOS",
   ];
   const links = profile.links.map(({ label, url }) => ({ label, url }));

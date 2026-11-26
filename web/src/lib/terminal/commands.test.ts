@@ -13,7 +13,7 @@ describe("terminal commands", () => {
       "ls products",
       "cat experience",
       "skills --tree",
-      "twin",
+      "agent <question>",
       "contact",
       "clear",
     ]) {
@@ -58,12 +58,19 @@ describe("terminal commands", () => {
     expect(runCommand("clear", data)).toEqual({ lines: [], action: { type: "clear" } });
   });
 
-  it("twin passes the question on, or prints usage", () => {
+  it("agent passes the question on, or prints usage", () => {
+    expect(runCommand("agent what do you build?", data).action).toEqual({
+      type: "twin",
+      question: "what do you build?",
+    });
+    expect(out("agent")).toBe("usage: agent <question>");
+  });
+
+  it("keeps twin as a legacy alias for agent", () => {
     expect(runCommand("twin what do you build?", data).action).toEqual({
       type: "twin",
       question: "what do you build?",
     });
-    expect(out("twin")).toBe("usage: twin <question>");
   });
 
   it("has easter eggs", () => {

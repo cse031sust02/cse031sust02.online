@@ -27,6 +27,7 @@ Docs and process live at the root. The whole app lives in `web/` ([ADR 006](docs
 cse031sust02.online/
 ├── AGENTS.md  CLAUDE.md  ARCHITECTURE.md  README.md
 ├── docker-compose.yml        # build context ./web
+├── docker-compose.dev.yml    # dev server in Docker, mounts ./web (live reload)
 ├── .github/workflows/ci.yml  # lint, typecheck, tests, build + secret check, e2e, Docker
 ├── docs/                     # features/, decisions/, deployment/
 ├── specs/                    # backlog/, active/, completed/, template.md

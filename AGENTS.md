@@ -9,7 +9,7 @@ The work is spec-driven: see [Workflow](#workflow). Overview: [ARCHITECTURE.md](
 ## Repository Layout
 
 - **`web/`**: the entire Next.js app (source, config, tests, `Dockerfile`, `.env*`, `content/`). **All app code lives here.**
-- Root: docs and process only: `docs/`, `specs/`, `tasks/`, `AGENTS.md`, `ARCHITECTURE.md`, `README.md`, `docker-compose.yml`.
+- Root: docs and process only: `docs/`, `specs/`, `tasks/`, `AGENTS.md`, `ARCHITECTURE.md`, `README.md`, `docker-compose.yml`, `docker-compose.dev.yml`.
 - Never put app code or app config at the root.
 
 ## Tech Stack
@@ -47,7 +47,8 @@ Format:         npm run format
 Type check:     npm run typecheck
 Prod build:     npm run build && npm start
 Secret check:   npm run check:secrets       # after a build
-Docker (local): docker compose up --build   # from repo root
+Docker (dev):   docker compose -f docker-compose.dev.yml up   # from repo root, live reload
+Docker (prod):  docker compose up --build   # from repo root, production-like snapshot on port 80
 ```
 
 ## Development Rules

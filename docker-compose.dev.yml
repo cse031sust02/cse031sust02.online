@@ -1,0 +1,31 @@
+# Local development with live reload.
+#   docker compose -f docker-compose.dev.yml up
+# Edits under web/ (code, styles, content/profile.yaml) show up without a rebuild.
+# For the production image, use docker-compose.yml instead.
+name: cse031sust02-dev
+
+services:
+  web:
+    image: node:22-alpine
+    working_dir: /app
+    # Install Linux deps only when package-lock.json changed, then run the dev server.
+    command: >-
+      sh -c "apk add --no-cache libc6-compat >/dev/null &&
+      if ! cmp -s package-lock.json node_modules/.lock-snapshot; then
+      npm ci && cp package-lock.json node_modules/.lock-snapshot; fi &&
+      npm run dev -- --hostname 0.0.0.0"
+    ports:
+      - "${DEV_PORT:-3000}:3000"   # set DEV_PORT if 3000 is taken
+    volumes:
+      - ./web:/app
+      # Container-only folders: macOS node_modules / build output must not leak in (or out).
+      - node_modules:/app/node_modules
+      - next_cache:/app/.next
+    environment:
+      PORT: "3000"
+      NEXT_TELEMETRY_DISABLED: "1"
+      # Next.js reads web/.env and web/.env.local itself (they're in the mounted folder).
+
+volumes:
+  node_modules:
+  next_cache:

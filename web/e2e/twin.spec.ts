@@ -43,7 +43,7 @@ test("home teaser prompt opens the chat; Esc closes it", async ({ page }) => {
   await page.route("/api/chat", (route) => route.fulfill({ status: 200, body: "Hi!" }));
   await page.goto("/#twin");
   await page.locator("#twin").getByRole("button").first().click();
-  const dialog = page.getByRole("dialog", { name: /digital twin/i });
+  const dialog = page.getByRole("dialog", { name: /ai agent/i });
   await expect(dialog.getByTestId("twin-reply")).toContainText("Hi!");
   await page.keyboard.press("Escape");
   await expect(dialog).toBeHidden();
@@ -82,5 +82,36 @@ test("terminal 'agent <q>' asks the AI agent", async ({ page }) => {
   await input.press("Enter");
   await expect(page.getByRole("log", { name: "Terminal output" })).toContainText(
     "agent> Terminal answer",
+  );
+});
+
+test("chat window maximizes and minimizes in place", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: /^Ask .+ AI Agent$/ }).click();
+  const dialog = page.getByRole("dialog", { name: /ai agent/i });
+  await expect(dialog).toHaveAttribute("data-expanded", "false");
+  await dialog.getByRole("button", { name: "Maximize chat" }).click();
+  await expect(dialog).toHaveAttribute("data-expanded", "true");
+  await dialog.getByRole("button", { name: "Minimize chat" }).click();
+  await expect(dialog).toHaveAttribute("data-expanded", "false");
+  await expect(page).toHaveURL(/\/$/);
+});
+
+test("teaser 'Open full screen' opens the maximized chat", async ({ page }) => {
+  await page.goto("/#twin");
+  await page.locator("#twin").getByRole("button", { name: "Open full screen" }).click();
+  await expect(page.getByRole("dialog", { name: /ai agent/i })).toHaveAttribute(
+    "data-expanded",
+    "true",
+  );
+});
+
+test("/twin minimizes back to the side-panel chat on the home page", async ({ page }) => {
+  await page.goto("/twin");
+  await page.getByRole("button", { name: "Minimize chat" }).click();
+  await expect(page).toHaveURL(/\/$/);
+  await expect(page.getByRole("dialog", { name: /ai agent/i })).toHaveAttribute(
+    "data-expanded",
+    "false",
   );
 });

@@ -11,11 +11,13 @@ Visitors chat with an AI persona of Talha that answers in first person, grounded
 4. Tokens stream back and render as markdown with a blinking cursor.
 
 ## UI: AI agent chat
-- Agent identity header: bot avatar, "<first name>'s AI Agent", and a live status dot: *online*, *thinking…* (before the first token), *typing…* (streaming), *offline* (503).
+- Agent identity header: sparkle avatar (deliberately not a face or robot), "<first name>'s AI Agent", and a live status dot: *online*, *thinking…* (before the first token), *typing…* (streaming), *offline* (503).
 - Chat bubbles with avatars, a greeting from the agent, a typing-dots indicator, and a streaming cursor.
 - Suggested questions to start; follow-up suggestion chips after each answer (questions not asked yet); copy button on replies; "new chat" resets the conversation.
 - Pill input: Enter sends, Shift+Enter adds a newline, a character counter appears near the 1,000 limit, and the disclaimer sits under the input.
 - Round floating launcher with avatar + online dot ("Ask <name>'s AI Agent"); the home teaser previews the agent greeting.
+- Window sizes: the chat opens as a side panel and can **maximize** to a large centered window and **minimize** back, in place (no navigation; Esc or close resets to the side panel). The teaser's "Open full screen" opens it maximized. The standalone `/twin` page has a minimize button that returns to the home page with the side panel open.
+- Pill input: focus shows on the rounded container only (the global focus ring lives in `@layer base` so the input can opt out).
 - The UI never shows fake tool calls or capabilities. Status reflects real request state only.
 
 ## Rules

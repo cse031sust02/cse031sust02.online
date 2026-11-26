@@ -1,4 +1,4 @@
-/** The twin's avatar: a small glowing bot face (decorative). */
+/** The AI agent's avatar: a glowing sparkle mark (decorative, deliberately not a face). */
 export function AgentAvatar({ size = 32, className = "" }: { size?: number; className?: string }) {
   return (
     <span
@@ -7,12 +7,15 @@ export function AgentAvatar({ size = 32, className = "" }: { size?: number; clas
       style={{ width: size, height: size }}
     >
       <svg viewBox="0 0 24 24" width={size * 0.6} height={size * 0.6} fill="none">
-        <path d="M12 2v3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <circle cx="12" cy="2" r="1.4" fill="currentColor" />
-        <rect x="4" y="6" width="16" height="13" rx="4" stroke="currentColor" strokeWidth="2" />
-        <circle cx="9" cy="12" r="1.6" fill="currentColor" />
-        <circle cx="15" cy="12" r="1.6" fill="currentColor" />
-        <path d="M9.5 16h5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path
+          d="M10 3.5c.6 3.9 2.1 5.4 6 6-3.9.6-5.4 2.1-6 6-.6-3.9-2.1-5.4-6-6 3.9-.6 5.4-2.1 6-6Z"
+          fill="currentColor"
+        />
+        <path
+          d="M18 13.5c.3 1.9 1 2.6 2.9 2.9-1.9.3-2.6 1-2.9 2.9-.3-1.9-1-2.6-2.9-2.9 1.9-.3 2.6-1 2.9-2.9Z"
+          fill="currentColor"
+          opacity="0.75"
+        />
       </svg>
     </span>
   );

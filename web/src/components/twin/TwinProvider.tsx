@@ -22,6 +22,9 @@ type TwinState = {
   ownerName: string;
   open: boolean;
   setOpen: (open: boolean) => void;
+  /** Chat window size: side panel (false) or large centered window (true). */
+  expanded: boolean;
+  setExpanded: (expanded: boolean) => void;
   /** Sends a question; resolves with the full reply (or a status message). */
   send: (question: string) => Promise<string>;
   /** Opens the slide-over and sends a question. */
@@ -64,6 +67,7 @@ export function TwinProvider({
   const [messages, setMessages] = useState<TwinMessage[]>([]);
   const [status, setStatus] = useState<TwinStatus>("idle");
   const [open, setOpen] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const messagesRef = useRef<TwinMessage[]>([]);
   const busy = useRef(false);
 
@@ -154,8 +158,20 @@ export function TwinProvider({
   }, [update]);
 
   const value = useMemo(
-    () => ({ messages, status, prompts, ownerName, open, setOpen, send, openWith, reset }),
-    [messages, status, prompts, ownerName, open, send, openWith, reset],
+    () => ({
+      messages,
+      status,
+      prompts,
+      ownerName,
+      open,
+      setOpen,
+      expanded,
+      setExpanded,
+      send,
+      openWith,
+      reset,
+    }),
+    [messages, status, prompts, ownerName, open, expanded, send, openWith, reset],
   );
   return <TwinContext.Provider value={value}>{children}</TwinContext.Provider>;
 }

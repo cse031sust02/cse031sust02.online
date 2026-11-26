@@ -1,15 +1,14 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { AgentAvatar, StatusDot } from "./AgentAvatar";
 import { TwinChat } from "./TwinChat";
 import { useTwin } from "./TwinProvider";
 
-/** Floating launcher on every page (except /twin) → slide-over chat. */
+/** Floating launcher on every page (except /twin) → slide-over chat that can maximize to a large window. */
 export function TwinLauncher() {
-  const { open, setOpen, ownerName, status } = useTwin();
+  const { open, setOpen, expanded, setExpanded, ownerName, status } = useTwin();
   const pathname = usePathname();
   const launcherRef = useRef<HTMLButtonElement>(null);
   const wasOpen = useRef(false);
@@ -22,13 +21,21 @@ export function TwinLauncher() {
     }
     wasOpen.current = true;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") {
+        setOpen(false);
+        setExpanded(false);
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [open, setOpen]);
+  }, [open, setOpen, setExpanded]);
 
   if (pathname === "/twin") return null;
+
+  const close = () => {
+    setOpen(false);
+    setExpanded(false);
+  };
 
   return (
     <>
@@ -54,39 +61,49 @@ export function TwinLauncher() {
         <div className="fixed inset-0 z-[85]">
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-bg/60"
-            onClick={() => setOpen(false)}
+            className={`absolute inset-0 ${expanded ? "bg-bg/80 backdrop-blur-sm" : "bg-bg/60"}`}
+            onClick={close}
           />
           <div
             role="dialog"
             aria-modal="true"
             aria-label="Chat with my AI agent"
-            className="absolute top-0 right-0 flex h-dvh w-full max-w-md flex-col border-l border-border bg-surface shadow-glow"
+            data-expanded={expanded}
+            className={
+              expanded
+                ? "absolute inset-0 m-auto flex h-dvh w-full flex-col bg-surface shadow-glow sm:h-[min(90dvh,960px)] sm:max-w-4xl sm:overflow-hidden sm:rounded-window sm:border sm:border-border"
+                : "absolute top-0 right-0 flex h-dvh w-full max-w-md flex-col border-l border-border bg-surface shadow-glow"
+            }
           >
             <TwinChat
               autoFocus
               className="flex-1"
               actions={
                 <>
-                  <Link
-                    href="/twin"
-                    onClick={() => setOpen(false)}
+                  <button
+                    type="button"
+                    onClick={() => setExpanded(!expanded)}
                     className="rounded-chip p-1.5 text-muted hover:text-accent"
-                    title="Full screen"
+                    title={expanded ? "Minimize" : "Maximize"}
                   >
                     <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none">
                       <path
-                        d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"
+                        d={
+                          expanded
+                            ? "M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"
+                            : "M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"
+                        }
                         stroke="currentColor"
                         strokeWidth="2"
                         strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
-                    <span className="sr-only">Open full screen</span>
-                  </Link>
+                    <span className="sr-only">{expanded ? "Minimize chat" : "Maximize chat"}</span>
+                  </button>
                   <button
                     type="button"
-                    onClick={() => setOpen(false)}
+                    onClick={close}
                     className="rounded-chip p-1.5 text-muted hover:text-fg"
                     title="Close"
                   >

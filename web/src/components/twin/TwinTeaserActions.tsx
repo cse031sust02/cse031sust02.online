@@ -1,12 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { AgentAvatar, StatusDot } from "./AgentAvatar";
 import { useTwin } from "./TwinProvider";
 
 /** Home-page twin teaser: an agent greeting; suggested prompts open the slide-over chat. */
 export function TwinTeaserActions() {
-  const { prompts, openWith, setOpen, ownerName, status } = useTwin();
+  const { prompts, openWith, setOpen, setExpanded, ownerName, status } = useTwin();
   const agentName = `${ownerName}'s AI Agent`;
   return (
     <div className="mt-6 rounded-window border border-border bg-bg p-4 sm:p-5">
@@ -47,12 +46,16 @@ export function TwinTeaserActions() {
         >
           Start a chat
         </button>
-        <Link
-          href="/twin"
+        <button
+          type="button"
+          onClick={() => {
+            setExpanded(true);
+            setOpen(true);
+          }}
           className="rounded-chip border border-border px-4 py-2 font-mono text-sm text-fg hover:border-accent"
         >
           Open full screen
-        </Link>
+        </button>
       </div>
     </div>
   );

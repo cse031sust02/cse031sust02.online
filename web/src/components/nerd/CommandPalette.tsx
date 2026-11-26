@@ -22,7 +22,7 @@ function PaletteDialog({
   links: { label: string; url: string }[];
   onClose: () => void;
 }) {
-  const { toggleCrt, toggleMatrix } = useNerd();
+  const { toggleCrt, toggleMatrix, cycleTheme } = useNerd();
   const router = useRouter();
   const twin = useTwinOptional();
   const [query, setQuery] = useState("");
@@ -51,6 +51,7 @@ function PaletteDialog({
       if (twin) twin.setOpen(true);
       else router.push("/twin");
     } else if (action.type === "toggle-crt") toggleCrt();
+    else if (action.type === "cycle-theme") cycleTheme();
     else toggleMatrix();
   };
 

@@ -5,6 +5,7 @@ export type PaletteAction =
   | { type: "open"; url: string }
   | { type: "open-twin" }
   | { type: "toggle-crt" }
+  | { type: "cycle-theme" }
   | { type: "toggle-matrix" };
 
 export type PaletteItem = {
@@ -42,8 +43,14 @@ export function buildPaletteItems(links: { label: string; url: string }[]): Pale
       action: { type: "open-twin" },
     },
     {
+      id: "theme",
+      label: "theme: switch Terminal ⇄ Mirage",
+      hint: "theme",
+      action: { type: "cycle-theme" },
+    },
+    {
       id: "theme-crt",
-      label: "theme: toggle CRT scanlines",
+      label: "crt: toggle CRT scanlines",
       hint: "crt",
       action: { type: "toggle-crt" },
     },

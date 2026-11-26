@@ -2,9 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import { createAnimationLoop, createVisibilityHandler } from "@/lib/nerd/animation-loop";
+import { useActiveTheme } from "./use-active-theme";
 import { usePrefersReducedMotion } from "./use-reduced-motion";
 
-const GLYPHS = "01アカサタナハマヤラワ<>/{}[]$#*+=ABCDEF";
+const GLYPHS = {
+  terminal: "01アカサタナハマヤラワ<>/{}[]$#*+=ABCDEF",
+  // Mirage: golden Arabic letters and Arabic-Indic digits, like drifting sand.
+  mirage: "ابتثجحخدذرزسشصضطظعغفقكلمنهوي٠١٢٣٤٥٦٧٨٩",
+} as const;
 const FONT_SIZE = 14;
 
 type MatrixRainProps = { className?: string };
@@ -16,6 +21,7 @@ type MatrixRainProps = { className?: string };
 export function MatrixRain({ className = "" }: MatrixRainProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const reducedMotion = usePrefersReducedMotion();
+  const theme = useActiveTheme();
   const [animating, setAnimating] = useState(false);
 
   useEffect(() => {
@@ -27,6 +33,7 @@ export function MatrixRain({ className = "" }: MatrixRainProps) {
       getComputedStyle(document.documentElement).getPropertyValue("--color-accent").trim() ||
       "#39ff88";
     const bg = getComputedStyle(document.documentElement).getPropertyValue("--color-bg").trim();
+    const glyphs = GLYPHS[theme];
     let drops: number[] = [];
 
     const resize = () => {
@@ -46,7 +53,7 @@ export function MatrixRain({ className = "" }: MatrixRainProps) {
         ctx.fillStyle = color;
         ctx.font = `${FONT_SIZE}px monospace`;
         drops.forEach((y, i) => {
-          const ch = GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+          const ch = glyphs[Math.floor(Math.random() * glyphs.length)];
           ctx.fillText(ch, i * FONT_SIZE, y * FONT_SIZE);
           drops[i] = y * FONT_SIZE > canvas.height && Math.random() > 0.975 ? 0 : y + 1;
         });
@@ -83,7 +90,7 @@ export function MatrixRain({ className = "" }: MatrixRainProps) {
       document.removeEventListener("visibilitychange", onVisibility);
       setAnimating(false);
     };
-  }, [reducedMotion]);
+  }, [reducedMotion, theme]);
 
   return (
     <canvas

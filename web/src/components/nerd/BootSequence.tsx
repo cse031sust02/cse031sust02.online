@@ -39,7 +39,7 @@ export function BootSequence({ lines }: { lines: string[] }) {
 
   return (
     <div
-      className="boot-overlay fixed inset-0 z-[100] flex items-center justify-center bg-bg p-6"
+      className="boot-overlay boot-screen fixed inset-0 z-[100] flex items-center justify-center bg-bg p-6"
       role="dialog"
       aria-modal="true"
       aria-label="cse031sust02 boot sequence"
@@ -48,7 +48,8 @@ export function BootSequence({ lines }: { lines: string[] }) {
       <div className="w-full max-w-lg font-mono text-sm">
         {lines.map((line, i) => (
           <p key={line} className="boot-line" style={{ animationDelay: `${i * 220}ms` }}>
-            <span className="text-accent">[ ok ]</span> {line}
+            <span className="theme-terminal-inline text-accent">[ ok ]</span>
+            <span className="theme-mirage-inline text-accent">✦</span> {line}
           </p>
         ))}
         <p className="mt-6 text-muted">

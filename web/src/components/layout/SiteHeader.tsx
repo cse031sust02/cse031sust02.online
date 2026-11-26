@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { PaletteButton } from "@/components/nerd/PaletteButton";
+import { ThemeSwitch } from "@/components/nerd/ThemeSwitch";
 import { NAV_ITEMS } from "@/config/nav";
 
 export function SiteHeader({ handle }: { handle: string }) {
@@ -15,7 +16,7 @@ export function SiteHeader({ handle }: { handle: string }) {
         aria-label="Main"
         className="mx-auto flex max-w-5xl items-center gap-4 px-4 py-3 font-mono text-sm"
       >
-        <Link href="/#top" className="shrink-0 font-bold text-accent text-glow">
+        <Link href="/#top" className="brand-mark shrink-0 font-bold text-accent text-glow">
           ~/{handle}
         </Link>
         <ul className="flex min-w-0 flex-1 gap-4 overflow-x-auto whitespace-nowrap [scrollbar-width:none]">
@@ -27,6 +28,7 @@ export function SiteHeader({ handle }: { handle: string }) {
             </li>
           ))}
         </ul>
+        <ThemeSwitch />
         <PaletteButton />
       </nav>
     </header>

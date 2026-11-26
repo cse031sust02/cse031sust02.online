@@ -27,7 +27,7 @@ export function ExperienceItem({
     <li className="relative border-l border-border pb-6 pl-6 last:pb-0">
       <span
         aria-hidden="true"
-        className="absolute -left-[5px] top-2 size-2.5 rounded-full bg-accent shadow-glow"
+        className="timeline-node absolute -left-[5px] top-2 size-2.5 rounded-full bg-accent shadow-glow"
       />
       <button
         type="button"
@@ -43,7 +43,7 @@ export function ExperienceItem({
             {open ? "[−]" : "[+]"}
           </span>
         </span>
-        <span className="mt-1 block text-lg font-semibold text-fg group-hover:text-accent">
+        <span className="mt-1 timeline-role block text-lg font-semibold text-fg group-hover:text-accent">
           {entry.role} <span className="text-muted">@</span> {entry.company}
         </span>
         <span className="block font-mono text-sm text-muted">{dateRange}</span>

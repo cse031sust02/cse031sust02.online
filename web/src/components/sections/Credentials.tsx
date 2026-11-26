@@ -3,7 +3,8 @@ import { formatDate, formatDateRange } from "@/lib/content/dates";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { Section } from "./Section";
 
-const subheading = "mb-3 font-mono text-sm font-bold uppercase tracking-wider text-highlight";
+const subheading =
+  "cred-heading mb-3 font-mono text-sm font-bold uppercase tracking-wider text-highlight";
 
 export function Credentials({ profile }: { profile: Profile }) {
   const { education, certifications, awards } = profile;

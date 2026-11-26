@@ -1,7 +1,11 @@
+import { THEMES, type ThemeId, isThemeId } from "@/lib/theme/themes";
 import type { TerminalData } from "./data";
 
 export type TerminalAction =
-  { type: "clear" } | { type: "scroll"; target: string } | { type: "twin"; question: string };
+  | { type: "clear" }
+  | { type: "scroll"; target: string }
+  | { type: "twin"; question: string }
+  | { type: "theme"; theme: ThemeId };
 
 export type CommandResult = {
   lines: string[];
@@ -17,6 +21,7 @@ export const HELP_LINES = [
   "  skills --tree    skills as a tree",
   "  agent <question> ask my AI agent",
   "  contact          open the contact form",
+  "  theme [name]     list or switch themes",
   "  clear            clear the screen",
   "Shortcuts: ↑/↓ history · ⌘K / Ctrl+K command palette",
 ];
@@ -67,6 +72,16 @@ export function runCommand(rawInput: string, data: TerminalData): CommandResult 
         lines: ["Opening the contact form…"],
         action: { type: "scroll", target: "contact" },
       };
+    case "theme":
+      if (rest === "" || rest === "--list") {
+        return {
+          lines: ["Themes:", ...THEMES.map((t) => `  ${t.id.padEnd(10)} ${t.description}`)],
+        };
+      }
+      if (isThemeId(rest)) {
+        return { lines: [`Switching to ${rest}…`], action: { type: "theme", theme: rest } };
+      }
+      return { lines: [`theme: unknown theme '${rest}'. Try: theme --list`] };
     case "clear":
       return { lines: [], action: { type: "clear" } };
     case "agent":

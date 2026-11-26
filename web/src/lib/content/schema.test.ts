@@ -32,6 +32,12 @@ describe("profile schema", () => {
     expect(profile.experience.length).toBeGreaterThan(0);
   });
 
+  it("treats basics.name_arabic as optional (Mirage calligraphy)", () => {
+    expect(parseProfile(realYaml).basics.name_arabic).toBe("طلحة ابن إمام");
+    const profile = parseProfile(mutate((d) => delete d.basics.name_arabic));
+    expect(profile.basics.name_arabic).toBeUndefined();
+  });
+
   it("names the path of a missing required field", () => {
     const issues = issuesOf(mutate((d) => delete d.experience[1].role));
     expect(issues).toContain("experience[1].role: required field is missing");

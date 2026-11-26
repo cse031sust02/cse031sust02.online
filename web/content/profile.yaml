@@ -1,0 +1,238 @@
+# ─────────────────────────────────────────────────────────────────────────────
+#  content/profile.yaml: single source of truth for the website AND the
+#  Digital Twin. Edit this file, redeploy, and both update.
+#
+#  Rules:
+#   • This file is public (it ships in the repo). NEVER put a phone number,
+#     email address, or other private data here.
+#   • The Digital Twin answers ONLY from what is written here. If it's not in
+#     this file, the twin will say it doesn't know.
+#   • Dates use "YYYY-MM". Use `end: present` for ongoing items.
+#   • Lists are shown in the order written.
+# ─────────────────────────────────────────────────────────────────────────────
+
+basics:
+  name: Talha Ibne Imam
+  handle: cse031sust02
+  title: Engineering Manager
+  tagline: Building AI-powered SaaS products and the teams that ship them.
+  years_of_experience: 15
+  summary: >-
+    Engineering Manager with 15+ years in software development, currently
+    focused on AI-powered SaaS products. Leads engineering teams while staying
+    hands-on with backend development, cloud, and DevOps. Proven track record
+    of building teams and launching products from scratch, and helping teams
+    deliver faster by adopting modern agentic engineering practices.
+  # What the site and twin say about current work / availability.
+  status: >-
+    Currently freelancing. Open to new work opportunities that interest me:
+    reach out through the contact form.
+
+# Shown in the About section as counters.
+stats:
+  - label: Years in software
+    value: "15+"
+  - label: Engineers led
+    value: "10–12"
+  - label: Flagship products
+    value: "4"
+
+links:
+  - label: GitHub
+    url: https://github.com/cse031sust02
+    icon: github
+  - label: LinkedIn
+    url: https://www.linkedin.com/in/talhasust
+    icon: linkedin
+
+experience:
+  - company: IDARE
+    role: Engineering Manager
+    start: 2021-01
+    end: 2026-08
+    highlights:
+      - >-
+        Led the development and delivery of multiple SaaS products from concept
+        to production, including an AI chatbot platform, machine learning
+        platform, and digital twin solution.
+      - >-
+        Managed a team of 10–12 engineers, growing it by hiring and onboarding
+        talented engineers over the years.
+      - >-
+        Stayed hands-on in backend and DevOps: built core Python/Django
+        services, APIs, and LLM/RAG pipelines, and set up Docker, AWS, and the
+        CI/CD pipelines for frontend and backend.
+      - >-
+        Mentored engineers on system design and code quality through code
+        reviews, and stepped in directly on critical features and production
+        incidents.
+      - >-
+        Introduced AI-assisted and agentic engineering workflows (Claude Code,
+        GitHub Copilot, AI agents) into the team's daily process to ship faster.
+    tech: [Python, Django, React, LLMs, RAG, AI Agents, PostgreSQL, MongoDB, Redis, RabbitMQ, WebRTC, Docker, Kubernetes, AWS]
+
+  - company: Kinship AI
+    role: Lead Software Architect
+    start: 2018-10
+    end: 2020-12
+    highlights:
+      - >-
+        Built the engineering team from scratch and led the company's first
+        SaaS product from concept to launch.
+      - >-
+        Designed a microservices architecture for a workforce platform used by
+        major garment factories to reach thousands of workers in real time.
+      - >-
+        Built core backend services in Python (Django, Flask) and set up the
+        Docker-based deployments on AWS and Google Cloud.
+    tech: [Python, Django, Flask, React, PostgreSQL, MongoDB, Redis, RabbitMQ, Docker, AWS, Google Cloud]
+
+  - company: BlueScheme Inc.
+    role: Senior PHP Developer
+    start: 2014-10
+    end: 2018-09
+    highlights:
+      - Delivered web applications for clients using Laravel and CodeIgniter.
+      - Built REST APIs for client Android and iOS apps.
+      - >-
+        Improved code quality and maintainability by introducing design
+        patterns and best practices.
+    tech: [PHP, Laravel, CodeIgniter, MySQL, JavaScript, REST, WebSocket]
+
+  - company: 3rd Eye Lab
+    role: Co-Founder & Developer
+    start: 2010-08
+    end: 2014-09
+    highlights:
+      - >-
+        Co-founded the startup and built Explore Dhaka, a location-based mobile
+        app that won the National Digital Innovation Award 2011.
+    tech: []
+
+  - company: Praxis ICT Ltd
+    role: Programmer
+    start: 2008-12
+    end: 2009-10
+    highlights:
+      - Developed web applications for clients using PHP, MySQL, and SOAP web services.
+    tech: [PHP, MySQL, SOAP]
+
+products:
+  - name: Knowverse AI
+    company: IDARE
+    role: Engineering Manager
+    start: 2024-01
+    end: 2026-08
+    description: >-
+      LLM-powered assistant platform built on RAG and AI agents. Turns company
+      knowledge and data into AI assistants, so teams can find information, get
+      insights, and complete tasks in plain language.
+    url: https://idare.ai/products/knowverse-ai
+    tags: [LLMs, RAG, AI Agents]
+
+  - name: AI Easy
+    company: IDARE
+    role: Engineering Manager
+    start: 2021-01
+    end: 2026-08
+    description: >-
+      Machine learning platform covering data connection, pre-processing, model
+      training, and deployment for tabular data. Combines data engineering,
+      data science, and ML engineering workflows in one place.
+    url: https://aieasy.idare.ai/easy
+    tags: [Machine Learning, MLOps, Data Engineering]
+
+  - name: EnergyMeta
+    company: IDARE
+    role: Engineering Manager
+    start: 2021-01
+    end: 2026-08
+    description: >-
+      GIS-based digital twin platform for creating 2D/3D replicas of offshore
+      wind, solar, oil, and gas assets. Automates offshore energy field concept
+      design to support the energy transition.
+    url: https://www.youtube.com/watch?v=w57KBgmsrH8   # TODO(owner): confirm this is the EnergyMeta demo
+    tags: [GIS, Digital Twin, 3D]
+
+  - name: Kutumbita
+    company: Kinship AI
+    role: Lead Software Architect
+    start: 2018-10
+    end: 2020-12
+    description: >-
+      SaaS workforce platform for garment factories. Real-time communication,
+      feedback tools, and insights help reduce worker turnover and improve
+      attendance.
+    url: https://www.crunchbase.com/organization/kutumbita
+    tags: [SaaS, Microservices, Real-time]
+
+skills:
+  - group: Leadership
+    items: [Team Leadership, Hiring, Mentoring, Agile/Scrum, Stakeholder Management]
+  - group: Languages & Frameworks
+    items: [Python, PHP, JavaScript, Django, FastAPI, React, Laravel]
+  - group: Data Management
+    items: [PostgreSQL, MySQL, MongoDB, Redis]
+  - group: DevOps & Cloud
+    items: [Docker, Kubernetes, Ansible, AWS, CI/CD, GitHub Actions]
+  - group: Web Technologies
+    items: [REST, WebSockets, Microservices, WebAssembly, Message Queue]
+  - group: AI & ML
+    items: [LLMs, RAG, AI Agents, ML Pipelines, MCP, Agentic Coding]
+
+education:
+  - institution: Shahjalal University of Science & Technology (SUST)
+    degree: MSc in Computer Science & Engineering
+    start: 2011
+    end: 2014
+  - institution: Shahjalal University of Science & Technology (SUST)
+    degree: BSc in Computer Science & Engineering
+    start: 2003
+    end: 2008
+  - institution: Shaikh Khalifa Bin Zayed Bangladesh Islamia School & College
+    degree: HSC
+    location: Abu Dhabi, UAE
+    end: 2002
+
+certifications:
+  - name: Claude 101
+    issuer: Anthropic Academy
+    date: 2026-11
+    url: https://academy.claude.com/verify/25e9c6c734dd9a2253029412ac07cd57
+  - name: Microservices Architecture Fundamentals
+    issuer: Pluralsight
+    date: 2020-04
+    url: https://app.pluralsight.com/achievements/share/c1eccf28-4809-46d1-8975-fc49f59737d7
+  - name: "M320: Data Modeling"
+    issuer: MongoDB University
+    date: 2020-01
+    url: http://university.mongodb.com/course_completion/58c20055-f233-4b8f-afca-065a19d80455
+  - name: Agile User Stories
+    issuer: Udemy
+    date: 2019-10
+    url: https://www.udemy.com/certificate/UC-M313Z1W1/
+
+awards:
+  - name: National Digital Innovation Award
+    year: 2011
+    for: Explore Dhaka (3rd Eye Lab)
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  Twin-only knowledge: NOT shown as a page section, but the Digital Twin may
+#  use it in answers. Add anything you want the twin to know: leadership
+#  philosophy, how you run teams, interests, current focus, opinions on tech,
+#  fun facts. Write in first person. Leave a section empty if unsure: the twin
+#  will simply say it doesn't know.
+# ─────────────────────────────────────────────────────────────────────────────
+twin_notes:
+  current_focus: >-
+    Freelancing, with a focus on AI-powered products and agentic
+    engineering. Open to new opportunities that interest me.
+  leadership_philosophy: ""     # e.g. how you hire, mentor, run sprints, handle incidents
+  how_i_work: ""                # e.g. preferred stack, code review style, remote/hybrid
+  interests: ""                 # e.g. hobbies, side projects, what you read
+  location_and_timezone: ""     # e.g. "Dhaka, Bangladesh (GMT+6)"; optional
+  fun_facts: []                 # short one-liners the twin can drop in
+  faq: []                       # pre-written answers, e.g.
+  #  - q: What kind of opportunities interest you?
+  #    a: ...

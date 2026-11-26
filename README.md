@@ -33,7 +33,7 @@ Production-like run with Docker, from the repo root:
 docker compose up --build    # reads web/.env if present
 ```
 
-Full guide: [docs/deployment/local.md](docs/deployment/local.md). Deploying (Hostinger, AWS, Vercel): [docs/deployment/production.md](docs/deployment/production.md).
+Full guide: [docs/deployment/local.md](docs/deployment/local.md).
 
 ## Checks (from `web/`)
 

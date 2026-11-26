@@ -63,11 +63,3 @@ jobs:
       - name: Image runs as non-root
         working-directory: .
         run: test "$(docker exec web id -u)" != "0"
-
-  nginx:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: nginx -t on the sample config
-        working-directory: .
-        run: ./docs/deployment/nginx/test-config.sh

@@ -15,6 +15,19 @@ All CV and Digital Twin knowledge lives in one owner-editable YAML file. The sit
 - Invalid content (typo, missing field, bad date) fails `npm run build` with a readable error naming the field.
 - Dates are `YYYY-MM`; `end: present` for ongoing items.
 - The twin may only state facts found in this file.
+- Unknown keys (e.g. a typo like `hightlights`) are rejected, except inside `twin_notes`, where any extra text or list-of-text key is allowed.
+
+## Code
+- `web/src/lib/content/schema.ts`: zod schema and `Profile` types.
+- `web/src/lib/content/load-profile.ts`: `getProfile()` (server-only, cached per process).
+- `web/src/lib/content/dates.ts`: `formatDateRange("2021-01", "present")` → `Jan 2021 – Present`.
+- `web/src/lib/content/privacy.ts`: rejects strings that look like an email address or phone number.
+
+Example error from `npm run build`:
+```
+Invalid content in content/profile.yaml:
+  • experience[1].start: expected YYYY-MM
+```
 
 ## Spec
-[002-content-model](../../specs/backlog/002-content-model.md)
+[002-content-model](../../specs/completed/002-content-model.md)

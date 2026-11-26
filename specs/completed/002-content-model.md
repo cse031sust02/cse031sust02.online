@@ -1,7 +1,7 @@
 # 002: Content Model (`profile.yaml` loader)
 
 ## Status
-Backlog
+Completed
 
 ## Feature Doc
 docs/features/content.md
@@ -28,13 +28,13 @@ formatDateRange(start, end): string
 ```
 
 ## Acceptance Criteria
-- [ ] The current `web/content/profile.yaml` validates successfully.
-- [ ] A missing required field fails with an error naming the field path.
-- [ ] An invalid date (e.g. `2021-13`) fails with an error naming the field path.
-- [ ] A string containing an email address or a phone-number-like pattern fails validation.
-- [ ] `formatDateRange('2021-01', '2026-08')` → `Jan 2021 – Aug 2026`; `end: present` → `… – Present`.
-- [ ] `npm run build` fails when `profile.yaml` is invalid.
-- [ ] `getProfile` cannot be imported into a client component (`server-only`).
+- [x] The current `web/content/profile.yaml` validates successfully.
+- [x] A missing required field fails with an error naming the field path.
+- [x] An invalid date (e.g. `2021-13`) fails with an error naming the field path.
+- [x] A string containing an email address or a phone-number-like pattern fails validation.
+- [x] `formatDateRange('2021-01', '2026-08')` → `Jan 2021 – Aug 2026`; `end: present` → `… – Present`.
+- [x] `npm run build` fails when `profile.yaml` is invalid.
+- [x] `getProfile` cannot be imported into a client component (`server-only`).
 
 ## Out of Scope
 - Rendering sections (003), the twin prompt (005).

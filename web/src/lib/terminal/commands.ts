@@ -15,7 +15,7 @@ export const HELP_LINES = [
   "  ls products      list products",
   "  cat experience   career log",
   "  skills --tree    skills as a tree",
-  "  twin <question>  ask my digital twin",
+  "  agent <question> ask my AI agent",
   "  contact          open the contact form",
   "  clear            clear the screen",
   "Shortcuts: ↑/↓ history · ⌘K / Ctrl+K command palette",
@@ -46,7 +46,7 @@ export function runCommand(rawInput: string, data: TerminalData): CommandResult 
     case "help":
       return { lines: HELP_LINES };
     case "whoami":
-      return { lines: [`${data.name}: ${data.title}`, data.tagline, `status: ${data.status}`] };
+      return { lines: [`${data.name}: ${data.title}`, data.tagline] };
     case "ls":
       if (rest === "products" || rest === "~/products") {
         return { lines: data.products.map((p) => `${p.name}/  (${p.company})`) };
@@ -69,8 +69,9 @@ export function runCommand(rawInput: string, data: TerminalData): CommandResult 
       };
     case "clear":
       return { lines: [], action: { type: "clear" } };
-    case "twin":
-      if (rest === "") return { lines: ["usage: twin <question>"] };
+    case "agent":
+    case "twin": // legacy alias
+      if (rest === "") return { lines: ["usage: agent <question>"] };
       return { lines: [], action: { type: "twin", question: rest } };
     case "sudo":
       if (rest === "make-coffee") {
@@ -79,7 +80,7 @@ export function runCommand(rawInput: string, data: TerminalData): CommandResult 
       return { lines: ["visitor is not in the sudoers file. This incident will be reported. 🙂"] };
     case "rm":
       if (/^-(rf|fr) \/?$/.test(rest) || rest === "-rf /*") {
-        return { lines: ["rm: nice try. TalhaOS is read-only for visitors. 🛡️"] };
+        return { lines: ["rm: nice try. cse031sust02 is read-only for visitors. 🛡️"] };
       }
       return { lines: ["rm: permission denied"] };
     default:

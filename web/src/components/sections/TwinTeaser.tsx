@@ -7,7 +7,7 @@ export function TwinTeaser({ profile }: { profile: Profile }) {
   return (
     <Section id="twin">
       <p className="max-w-2xl text-fg">
-        Ask my AI twin about my experience, products and how I work. It answers in first person,
+        Ask my AI agent about my experience, products and how I work. It answers in first person,
         only from my CV.
       </p>
       <TwinTeaserActions />

@@ -1,5 +1,6 @@
 "use client";
 
+import { SHOWN_PROMPTS, orderPrompts } from "@/lib/twin/suggested-prompts";
 import {
   type ReactNode,
   createContext,
@@ -17,11 +18,15 @@ export type TwinStatus = "idle" | "streaming" | "offline" | "rate_limited" | "er
 type TwinState = {
   messages: TwinMessage[];
   status: TwinStatus;
+  /** Suggested chips for an empty chat: pinned ones first, then random picks. */
   prompts: string[];
   /** Owner's first name, for UI copy. */
   ownerName: string;
   open: boolean;
   setOpen: (open: boolean) => void;
+  /** Chat window size: side panel (false) or large centered window (true). */
+  expanded: boolean;
+  setExpanded: (expanded: boolean) => void;
   /** Sends a question; resolves with the full reply (or a status message). */
   send: (question: string) => Promise<string>;
   /** Opens the slide-over and sends a question. */
@@ -29,17 +34,18 @@ type TwinState = {
   reset: () => void;
 };
 
-const STORAGE_KEY = "talhaos:twin";
+const STORAGE_KEY = "cse031sust02:twin";
 export const MAX_QUESTION_CHARS = 1000;
 const MAX_STORED_MESSAGES = 50;
 
 export const STATUS_TEXT: Record<Exclude<TwinStatus, "idle" | "streaming">, string> = {
-  offline: "twin offline: the AI twin isn't available right now. Please use the contact form.",
+  offline: "agent offline: the AI agent isn't available right now. Please use the contact form.",
   rate_limited: "Too many messages in a short time. Please wait a few minutes and try again.",
   error: "Something went wrong. Please try again.",
 };
 
 const TwinContext = createContext<TwinState | null>(null);
+const NO_PROMPTS: string[] = [];
 
 export function useTwin(): TwinState {
   const ctx = useContext(TwinContext);
@@ -53,17 +59,30 @@ export function useTwinOptional(): TwinState | null {
 
 /** Shared twin conversation (launcher, /twin, home teaser, terminal). Lives in sessionStorage only. */
 export function TwinProvider({
-  prompts,
+  prompts: pool,
+  pinnedPrompts,
   ownerName,
   children,
 }: {
+  /** Pool of suggested questions; a random few are shown. */
   prompts: string[];
+  /** Questions always shown first (e.g. the brand FAQ). */
+  pinnedPrompts?: string[];
   ownerName: string;
   children: ReactNode;
 }) {
+  const pinned = pinnedPrompts ?? NO_PROMPTS;
+  // Server render uses a fixed order; the shuffle happens after hydration to avoid a mismatch.
+  const [ordered, setOrdered] = useState<string[]>(() => [...pinned, ...pool]);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setOrdered(orderPrompts({ pinned, pool }));
+  }, [pinned, pool]);
+  const prompts = useMemo(() => ordered.slice(0, SHOWN_PROMPTS), [ordered]);
   const [messages, setMessages] = useState<TwinMessage[]>([]);
   const [status, setStatus] = useState<TwinStatus>("idle");
   const [open, setOpen] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const messagesRef = useRef<TwinMessage[]>([]);
   const busy = useRef(false);
 
@@ -154,8 +173,20 @@ export function TwinProvider({
   }, [update]);
 
   const value = useMemo(
-    () => ({ messages, status, prompts, ownerName, open, setOpen, send, openWith, reset }),
-    [messages, status, prompts, ownerName, open, send, openWith, reset],
+    () => ({
+      messages,
+      status,
+      prompts,
+      ownerName,
+      open,
+      setOpen,
+      expanded,
+      setExpanded,
+      send,
+      openWith,
+      reset,
+    }),
+    [messages, status, prompts, ownerName, open, expanded, send, openWith, reset],
   );
   return <TwinContext.Provider value={value}>{children}</TwinContext.Provider>;
 }

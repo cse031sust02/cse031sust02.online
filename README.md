@@ -1,6 +1,6 @@
-# cse031sust02.dev
+# cse031sust02.online
 
-Personal site of **Talha Ibne Imam** (Engineering Manager, AI SaaS). It's styled as "TalhaOS", a retro terminal: a CV-driven portfolio plus a **Digital Twin** chat powered by OpenRouter.
+Personal site of **Talha Ibne Imam** (Engineering Manager, AI SaaS). It's styled as "cse031sust02", a retro terminal: a CV-driven portfolio plus a **Digital Twin** chat powered by OpenRouter.
 
 - All CV and twin facts live in one file: [`web/content/profile.yaml`](web/content/profile.yaml).
 - Next.js (App Router) + TypeScript + Tailwind CSS v4, built as a standalone Node server and Docker image, so it runs on any host.
@@ -8,12 +8,12 @@ Personal site of **Talha Ibne Imam** (Engineering Manager, AI SaaS). It's styled
 ## Repository layout
 
 ```
-cse031sust02.dev/
+cse031sust02.online/
 ├── web/                  # the Next.js app (source, config, tests, Dockerfile, content/)
 ├── docs/                 # features/, decisions/ (ADRs), deployment/
 ├── specs/                # backlog/ → active/ → completed/
 ├── tasks/                # task template
-├── docker-compose.yml    # production-like local run (build context ./web)
+├── docker-compose.yml    # local dev in Docker with live reload (mounts ./web, port 3000)
 ├── AGENTS.md             # rules for coding agents
 └── ARCHITECTURE.md       # how the pieces fit together
 ```
@@ -27,13 +27,13 @@ npm install
 npm run dev                  # http://localhost:3000
 ```
 
-Production-like run with Docker, from the repo root:
+Or in Docker with live reload (no rebuild after edits), from the repo root:
 
 ```bash
-docker compose up --build    # reads web/.env if present
+docker compose up            # → http://localhost:3000
 ```
 
-Full guide: [docs/deployment/local.md](docs/deployment/local.md). Deploying (Hostinger, AWS, Vercel): [docs/deployment/production.md](docs/deployment/production.md).
+Full guide: [docs/deployment/local.md](docs/deployment/local.md).
 
 ## Checks (from `web/`)
 

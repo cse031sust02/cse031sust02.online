@@ -1,6 +1,6 @@
 /** Public base URL (no trailing slash). NEXT_PUBLIC_* is inlined at build time. */
 export function getSiteUrl(): string {
-  const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://cse031sust02.dev";
+  const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://cse031sust02.online";
   return raw.replace(/\/+$/, "");
 }
 

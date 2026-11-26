@@ -9,6 +9,8 @@ export type NavItem = {
   href: string;
   /** Terminal flavour shown next to the section title. */
   command: string;
+  /** Directory shown in the window title (defaults to `id`). */
+  dir?: string;
 };
 
 export const NAV_ITEMS: readonly NavItem[] = [
@@ -16,9 +18,14 @@ export const NAV_ITEMS: readonly NavItem[] = [
   { id: "experience", label: "Experience", href: "/#experience", command: "git log --career" },
   { id: "products", label: "Products", href: "/#products", command: "ls ~/products" },
   { id: "skills", label: "Skills", href: "/#skills", command: "tree ~/skills" },
-  { id: "twin", label: "Twin", href: "/#twin", command: "./twin --chat" },
+  { id: "twin", label: "AI Agent", href: "/#twin", command: "./agent --chat", dir: "agent" },
   { id: "credentials", label: "Credentials", href: "/#credentials", command: "cat credentials" },
-  { id: "terminal", label: "Terminal", href: "/#terminal", command: "./talhaos --interactive" },
+  {
+    id: "terminal",
+    label: "Terminal",
+    href: "/#terminal",
+    command: "./cse031sust02 --interactive",
+  },
   { id: "contact", label: "Contact", href: "/#contact", command: "ping talha" },
 ];
 

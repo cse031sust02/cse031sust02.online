@@ -28,15 +28,6 @@ basics:
     Currently freelancing. Open to new work opportunities that interest me:
     reach out through the contact form.
 
-# Shown in the About section as counters.
-stats:
-  - label: Years in software
-    value: "15+"
-  - label: Engineers led
-    value: "10–12"
-  - label: Flagship products
-    value: "4"
-
 links:
   - label: GitHub
     url: https://github.com/cse031sust02
@@ -139,7 +130,7 @@ products:
       Machine learning platform covering data connection, pre-processing, model
       training, and deployment for tabular data. Combines data engineering,
       data science, and ML engineering workflows in one place.
-    url: https://aieasy.idare.ai/easy
+    url: https://aieasy.idare.ai/home
     tags: [Machine Learning, MLOps, Data Engineering]
 
   - name: EnergyMeta
@@ -154,7 +145,7 @@ products:
     url: https://www.youtube.com/watch?v=w57KBgmsrH8   # TODO(owner): confirm this is the EnergyMeta demo
     tags: [GIS, Digital Twin, 3D]
 
-  - name: Kutumbita
+  - name: Kinship AI
     company: Kinship AI
     role: Lead Software Architect
     start: 2018-10
@@ -233,6 +224,13 @@ twin_notes:
   interests: ""                 # e.g. hobbies, side projects, what you read
   location_and_timezone: ""     # e.g. "Dhaka, Bangladesh (GMT+6)"; optional
   fun_facts: []                 # short one-liners the twin can drop in
-  faq: []                       # pre-written answers, e.g.
-  #  - q: What kind of opportunities interest you?
-  #    a: ...
+  # Pre-written answers. The first question also appears as a suggested chip.
+  faq:
+    - q: Why is your brand "cse031sust02"?
+      a: >-
+        Honestly? Name collisions. "Talha" is a popular name, so signup forms
+        kept telling me it was already taken. So I did what an engineer does:
+        I built a unique key from my own data. CSE is my department, 031 is my
+        roll number, SUST is Shahjalal University of Science & Technology, and
+        02 is my 2002 batch. Zero collisions so far: as far as I know, it's the
+        only one in the world. Basically, a primary key for a human.

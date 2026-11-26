@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { getProfile } from "@/lib/content/load-profile";
 
-export const alt = "TalhaOS terminal card";
+export const alt = "cse031sust02 terminal card";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -49,7 +49,10 @@ export default function OpengraphImage() {
         </div>
         <div style={{ display: "flex", flexDirection: "column", padding: "48px 56px", gap: 20 }}>
           <div style={{ display: "flex", color: C.muted, fontSize: 30 }}>
-            <span style={{ color: C.accent }}>{basics.handle}@talhaos</span>:~$ whoami
+            <span style={{ color: C.accent }}>
+              {basics.name.split(" ")[0].toLowerCase()}@{basics.handle}
+            </span>
+            :~$ whoami
           </div>
           <div style={{ color: C.accent, fontSize: 80, fontWeight: 700 }}>{basics.name}</div>
           <div style={{ color: C.cyan, fontSize: 40 }}>{basics.title}</div>

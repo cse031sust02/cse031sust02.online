@@ -6,9 +6,6 @@ export function About({ profile }: { profile: Profile }) {
   return (
     <Section id="about">
       <p className="max-w-3xl leading-relaxed text-fg">{basics.summary}</p>
-      <p className="mt-6 rounded-chip border border-border bg-surface-2 px-4 py-3 font-mono text-sm">
-        <span className="text-highlight">status:</span> {basics.status}
-      </p>
       {stats.length > 0 && (
         <dl className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {stats.map((stat) => (

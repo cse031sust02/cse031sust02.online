@@ -14,7 +14,7 @@ export function Section({ id, children }: SectionProps) {
   const headingId = `${id}-heading`;
   return (
     <section id={id} aria-labelledby={headingId} className="scroll-mt-20">
-      <WindowCard title={`~/${id} — zsh`}>
+      <WindowCard title={`~/${item.dir ?? id} — zsh`}>
         <p aria-hidden="true" className="mb-1 font-mono text-sm text-muted">
           <span className="text-accent">$</span> {item.command}
         </p>

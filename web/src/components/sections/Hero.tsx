@@ -18,7 +18,10 @@ export function Hero({ profile }: { profile: Profile }) {
       <MatrixRain className="absolute inset-0 -z-10 size-full opacity-25 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
       <AsciiName name={basics.name} />
       <p className="mt-6 mb-4 font-mono text-sm text-muted">
-        <span className="text-accent">{basics.handle}@talhaos</span>:~$ whoami
+        <span className="text-accent">
+          {basics.name.split(" ")[0].toLowerCase()}@{basics.handle}
+        </span>
+        :~$ whoami
       </p>
       <h1
         id="hero-heading"
@@ -34,7 +37,7 @@ export function Hero({ profile }: { profile: Profile }) {
             href="#twin"
             className={`${ctaBase} border-accent bg-accent text-bg hover:bg-transparent hover:text-accent`}
           >
-            Chat with my twin
+            Chat with my AI Agent
           </a>
         </li>
         <li>

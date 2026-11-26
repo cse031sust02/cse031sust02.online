@@ -57,14 +57,14 @@ describe("POST /api/contact", () => {
     const mail = sendMail.mock.calls[0][0];
     expect(mail.to).toBe("owner@test.dev");
     expect(mail.replyTo.address).toBe("grace@example.org");
-    expect(mail.subject).toBe("[cse031sust02.dev] Message from Grace Visitor");
+    expect(mail.subject).toBe("[cse031sust02.online] Message from Grace Visitor");
     expect(mail.text).toContain("I'd like to talk about a project.");
   });
 
   it("strips newlines from the name in the subject (header injection)", async () => {
     await submit(valid({ name: "Eve\r\nBcc: victim@example.com" }));
     expect(sendMail.mock.calls[0][0].subject).toBe(
-      "[cse031sust02.dev] Message from Eve Bcc: victim@example.com",
+      "[cse031sust02.online] Message from Eve Bcc: victim@example.com",
     );
   });
 

@@ -42,10 +42,10 @@ describe("Terminal", () => {
     expect(log).toBeEmptyDOMElement();
   });
 
-  it("twin prints a stub until the twin is connected", async () => {
+  it("agent prints a stub until the AI agent is connected", async () => {
     const { user, input, log } = setup();
-    await user.type(input, "twin hello{Enter}");
-    expect(await screen.findByText(/twin: offline/)).toBeInTheDocument();
-    expect(log).toHaveTextContent("twin hello");
+    await user.type(input, "agent hello{Enter}");
+    expect(await screen.findByText(/agent: offline/)).toBeInTheDocument();
+    expect(log).toHaveTextContent("agent hello");
   });
 });

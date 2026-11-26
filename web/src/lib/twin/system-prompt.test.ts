@@ -20,6 +20,7 @@ describe("buildSystemPrompt", () => {
   it("includes the persona and safety rules", () => {
     expect(prompt).toMatch(/FIRST PERSON/);
     expect(prompt).toMatch(/FACTS ONLY/);
+    expect(prompt).toMatch(/twin_notes\.faq/);
     expect(prompt).toMatch(/never share a phone number or email address/i);
     expect(prompt).toMatch(/currently freelancing and open to new work opportunities/);
     expect(prompt).toMatch(/contact form/);

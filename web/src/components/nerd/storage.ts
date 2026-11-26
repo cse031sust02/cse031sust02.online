@@ -1,6 +1,6 @@
 /** localStorage keys + the pre-paint script that applies them to <html> (no flash, no hydration mismatch). */
-export const BOOTED_KEY = "talhaos:booted";
-export const CRT_KEY = "talhaos:crt";
+export const BOOTED_KEY = "cse031sust02:booted";
+export const CRT_KEY = "cse031sust02:crt";
 
 export const PREPAINT_SCRIPT = `(function(){try{var d=document.documentElement;if(matchMedia('(prefers-reduced-motion: reduce)').matches||localStorage.getItem('${BOOTED_KEY}'))d.dataset.booted='1';if(localStorage.getItem('${CRT_KEY}')==='off')d.dataset.crt='off';}catch(e){}})();`;
 

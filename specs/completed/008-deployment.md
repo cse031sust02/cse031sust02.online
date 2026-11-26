@@ -9,6 +9,8 @@ docs/decisions/004-host-agnostic-standalone-docker.md
 ## Goal
 Step-by-step, tested guides to deploy the same build to the owner's chosen host.
 
+> **Update (2026-11-26):** the production guide (`docs/deployment/production.md`) and the Nginx sample config were removed from the repo at the owner's request. The owner maintains deployment guides privately; those paths are git-ignored. Still in the repo: the Dockerfile, `docker-compose.yml`, `docs/deployment/local.md` and the CI workflow (without the `nginx -t` job).
+
 ## Requirements
 - `docs/deployment/production.md` with sections for:
   - Hostinger VPS (Docker, or PM2 + Nginx + Let's Encrypt), and Hostinger Node.js hosting.

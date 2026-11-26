@@ -6,7 +6,6 @@ export type TerminalData = {
   name: string;
   title: string;
   tagline: string;
-  status: string;
   products: { name: string; company: string; description: string }[];
   experience: { role: string; company: string; dates: string }[];
   skills: { group: string; items: string[] }[];
@@ -17,7 +16,6 @@ export function toTerminalData(profile: Profile): TerminalData {
     name: profile.basics.name,
     title: profile.basics.title,
     tagline: profile.basics.tagline,
-    status: profile.basics.status,
     products: profile.products.map((p) => ({
       name: p.name,
       company: p.company,

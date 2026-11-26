@@ -24,10 +24,10 @@ Browser ── POST /api/contact ─> route.ts ──> lib/contact/mailer.ts ─
 Docs and process live at the root. The whole app lives in `web/` ([ADR 006](docs/decisions/006-app-in-web-folder.md)).
 
 ```
-cse031sust02.dev/
+cse031sust02.online/
 ├── AGENTS.md  CLAUDE.md  ARCHITECTURE.md  README.md
-├── docker-compose.yml        # build context ./web
-├── .github/workflows/ci.yml  # lint, typecheck, tests, build + secret check, e2e, Docker, nginx -t
+├── docker-compose.yml        # local dev server in Docker, mounts ./web (live reload)
+├── .github/workflows/ci.yml  # lint, typecheck, tests, build + secret check, e2e, Docker
 ├── docs/                     # features/, decisions/, deployment/
 ├── specs/                    # backlog/, active/, completed/, template.md
 ├── tasks/                    # template.md

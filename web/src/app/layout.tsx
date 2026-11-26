@@ -20,18 +20,18 @@ const sans = Inter({ variable: "--font-inter", subsets: ["latin"] });
 // an invalid file fails `npm run build` with a readable error.
 export function generateMetadata(): Metadata {
   const { basics } = getProfile();
-  const defaultTitle = `${basics.name}: ${basics.title} | TalhaOS`;
+  const defaultTitle = `${basics.name}: ${basics.title} | cse031sust02`;
   return {
     metadataBase: new URL(getSiteUrl()),
     title: { default: defaultTitle, template: `%s | ${basics.name}` },
     description: `${basics.tagline} ${basics.summary}`.slice(0, 300),
-    applicationName: "TalhaOS",
+    applicationName: "cse031sust02",
     authors: [{ name: basics.name }],
     alternates: { canonical: "/" },
     openGraph: {
       type: "profile",
       url: "/",
-      siteName: "cse031sust02.dev",
+      siteName: "cse031sust02.online",
       title: defaultTitle,
       description: basics.tagline,
     },
@@ -42,12 +42,13 @@ export function generateMetadata(): Metadata {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   const profile = getProfile();
+  const promptSet = suggestedPrompts(profile);
   const bootLines = [
     `Loading profile: ${profile.basics.name}`,
     `Mounting ~/experience (${profile.experience.length} commits)`,
     `Mounting ~/products (${profile.products.length})`,
-    "Starting twin daemon",
-    "Welcome to TalhaOS",
+    "Starting agent daemon",
+    "Welcome to cse031sust02",
   ];
   const links = profile.links.map(({ label, url }) => ({ label, url }));
 
@@ -64,7 +65,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-dvh">
         <NerdProvider>
           <TwinProvider
-            prompts={suggestedPrompts(profile)}
+            prompts={promptSet.pool}
+            pinnedPrompts={promptSet.pinned}
             ownerName={profile.basics.name.split(" ")[0]}
           >
             <BootSequence lines={bootLines} />

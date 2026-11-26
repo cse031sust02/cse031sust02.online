@@ -42,7 +42,7 @@ export function BootSequence({ lines }: { lines: string[] }) {
       className="boot-overlay fixed inset-0 z-[100] flex items-center justify-center bg-bg p-6"
       role="dialog"
       aria-modal="true"
-      aria-label="TalhaOS boot sequence"
+      aria-label="cse031sust02 boot sequence"
       data-testid="boot"
     >
       <div className="w-full max-w-lg font-mono text-sm">

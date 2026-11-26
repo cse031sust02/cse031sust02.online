@@ -59,10 +59,10 @@ function transportFor(config: MailConfig): Transporter {
 export async function sendContactEmail(config: MailConfig, msg: ContactMessage): Promise<void> {
   const name = headerSafe(msg.name);
   await transportFor(config).sendMail({
-    from: { name: "cse031sust02.dev contact form", address: config.from },
+    from: { name: "cse031sust02.online contact form", address: config.from },
     to: config.to,
     replyTo: { name, address: headerSafe(msg.email) },
-    subject: `[cse031sust02.dev] Message from ${name}`,
+    subject: `[cse031sust02.online] Message from ${name}`,
     text: `From: ${name} <${headerSafe(msg.email)}>\n\n${msg.message}\n`,
   });
 }

@@ -37,8 +37,12 @@ yarn-error.log*
 .env*
 !.env.example
 
-# server-local compose overrides (e.g. bind to 127.0.0.1 behind Nginx)
+# server-local compose overrides
 docker-compose.override.yml
+
+# production deployment guides are kept private by the owner (not in git)
+docs/deployment/production.md
+docs/deployment/nginx/
 
 # vercel
 .vercel

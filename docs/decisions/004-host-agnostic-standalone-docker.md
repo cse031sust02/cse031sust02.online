@@ -18,3 +18,5 @@ Build with `output: 'standalone'`, keep the whole app in `web/` with its multi-s
 - Vercel needs "Root Directory" set to `web`.
 - Reverse proxies must disable buffering for `/api/chat`.
 - The in-memory rate limit is per instance; use Redis if scaled out.
+
+**Update (2026-11):** the root `docker-compose.yml` now runs the local dev server (live reload, port 3000) instead of a production-like build. The production image is still built from `web/Dockerfile` (as CI does).

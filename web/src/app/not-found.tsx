@@ -10,7 +10,7 @@ export default function NotFound() {
       <WindowCard title="~ — zsh" className="w-full max-w-xl">
         <h1 className="font-mono text-2xl font-bold text-highlight">404: command not found</h1>
         <p className="mt-4 font-mono text-sm text-muted">
-          <span className="text-accent">visitor@talhaos</span>:~$ cd this-page
+          <span className="text-accent">visitor@cse031sust02</span>:~$ cd this-page
           <br />
           zsh: no such file or directory
         </p>

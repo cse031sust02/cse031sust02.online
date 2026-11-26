@@ -88,3 +88,35 @@ describe("terminal commands", () => {
     expect(out("  ls    products ")).toBe("FixtureGPT/  (Fixture Corp)");
   });
 });
+
+describe("theme command", () => {
+  const data = {
+    name: "N",
+    title: "T",
+    tagline: "t",
+    products: [],
+    experience: [],
+    skills: [],
+  };
+
+  it("lists themes", () => {
+    const { lines, action } = runCommand("theme", data);
+    expect(action).toBeUndefined();
+    expect(lines.join("\n")).toMatch(/terminal/);
+    expect(lines.join("\n")).toMatch(/mirage/);
+  });
+
+  it("switches to a known theme", () => {
+    expect(runCommand("theme mirage", data).action).toEqual({ type: "theme", theme: "mirage" });
+  });
+
+  it("rejects an unknown theme", () => {
+    const { lines, action } = runCommand("theme neon", data);
+    expect(action).toBeUndefined();
+    expect(lines[0]).toMatch(/unknown theme/);
+  });
+
+  it("is listed in help", () => {
+    expect(runCommand("help", data).lines.join("\n")).toMatch(/theme \[name\]/);
+  });
+});

@@ -11,7 +11,7 @@ export function About({ profile }: { profile: Profile }) {
           {stats.map((stat) => (
             <div key={stat.label} className="rounded-chip border border-border p-4">
               <dt className="text-sm text-muted">{stat.label}</dt>
-              <dd className="font-mono text-3xl font-bold text-accent">{stat.value}</dd>
+              <dd className="font-display text-3xl font-bold text-accent">{stat.value}</dd>
             </div>
           ))}
         </dl>

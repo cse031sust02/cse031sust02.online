@@ -10,8 +10,8 @@ export function Products({ profile }: { profile: Profile }) {
       <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {profile.products.map((product) => (
           <li key={product.name}>
-            <article className="flex h-full flex-col rounded-chip border border-border bg-surface-2 p-5 transition-colors hover:border-accent">
-              <h3 className="font-mono text-lg font-bold">
+            <article className="product-card flex h-full flex-col rounded-chip border border-border bg-surface-2 p-5 transition-colors hover:border-accent">
+              <h3 className="font-display text-lg font-bold">
                 <ExternalLink href={product.url} className="text-accent-2 hover:underline">
                   <span className="text-muted">{product.company} / </span>
                   {product.name}

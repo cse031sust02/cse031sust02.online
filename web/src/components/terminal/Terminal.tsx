@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useNerdOptional } from "@/components/nerd/NerdProvider";
 import { scrollToSection } from "@/components/nerd/scroll";
 import { useTwinOptional } from "@/components/twin/TwinProvider";
 import { type TerminalAction, runCommand } from "@/lib/terminal/commands";
@@ -23,6 +24,7 @@ export function Terminal({ data, prompt, onTwin }: TerminalProps) {
   const [value, setValue] = useState("");
   const [history, setHistory] = useState(emptyHistory);
   const twin = useTwinOptional();
+  const nerd = useNerdOptional();
   const nextId = useRef(1);
   const inputRef = useRef<HTMLInputElement>(null);
   const logRef = useRef<HTMLDivElement>(null);
@@ -37,6 +39,7 @@ export function Terminal({ data, prompt, onTwin }: TerminalProps) {
   const handleAction = async (action: TerminalAction) => {
     if (action.type === "clear") setEntries([]);
     else if (action.type === "scroll") scrollToSection(action.target);
+    else if (action.type === "theme") nerd?.setTheme(action.theme);
     else {
       const ask = onTwin ?? twin?.send;
       if (!ask) {

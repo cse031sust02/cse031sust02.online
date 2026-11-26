@@ -42,8 +42,8 @@ cse031sust02.online/
         ├── app/              # layout, page, twin/, api/chat, api/contact, api/health, OG, sitemap, robots
         ├── components/       # sections/, terminal/, twin/, boot/, hero/, ui/, layout/
         ├── config/           # nav.ts: nav items shared by header, palette, sitemap
-        ├── lib/              # content/, twin/, contact/, rate-limit.ts
-        └── styles/           # theme.css, globals.css
+        ├── lib/              # content/, twin/, contact/, theme/, rate-limit.ts
+        └── styles/           # theme.css (tokens per theme), globals.css, themes/<id>.css
 ```
 
 ## Layers (paths relative to `web/`)
@@ -56,7 +56,7 @@ cse031sust02.online/
 | Components | `src/components/**` | Presentation. Client components only where interactive. |
 | Route handlers | `src/app/api/**/route.ts` | HTTP in/out, validation, rate limiting. |
 | Lib | `src/lib/**` | Logic and integrations (OpenRouter, SMTP). |
-| Theme | `src/styles/theme.css` | Design tokens (colors, fonts, effects). |
+| Theme | `src/styles/theme.css`, `src/styles/themes/` | Design tokens per theme (`html[data-theme]`) + theme-only decoration. Registry in `src/lib/theme/`. |
 
 ## Key Decisions
 

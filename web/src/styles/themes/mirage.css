@@ -1,0 +1,559 @@
+/*
+ * Mirage theme decoration: Islamic geometry, calligraphy and arches over a modern UI.
+ * Active only under html[data-theme="mirage"]. Colours come from theme.css tokens only;
+ * the pattern SVGs below are used as masks, so they carry shape, never colour.
+ */
+
+html[data-theme="mirage"] {
+  --mirage-lattice: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80' fill='none' stroke='black' stroke-width='1'%3E%3Cpolygon points='46.51,24.29 49.20,30.80 55.71,33.49 53.01,40.00 55.71,46.51 49.20,49.20 46.51,55.71 40.00,53.01 33.49,55.71 30.80,49.20 24.29,46.51 26.99,40.00 24.29,33.49 30.80,30.80 33.49,24.29 40.00,26.99'/%3E%3Cpolygon points='6.51,-15.71 9.20,-9.20 15.71,-6.51 13.01,0.00 15.71,6.51 9.20,9.20 6.51,15.71 0.00,13.01 -6.51,15.71 -9.20,9.20 -15.71,6.51 -13.01,0.00 -15.71,-6.51 -9.20,-9.20 -6.51,-15.71 -0.00,-13.01'/%3E%3Cpolygon points='86.51,-15.71 89.20,-9.20 95.71,-6.51 93.01,0.00 95.71,6.51 89.20,9.20 86.51,15.71 80.00,13.01 73.49,15.71 70.80,9.20 64.29,6.51 66.99,0.00 64.29,-6.51 70.80,-9.20 73.49,-15.71 80.00,-13.01'/%3E%3Cpolygon points='6.51,64.29 9.20,70.80 15.71,73.49 13.01,80.00 15.71,86.51 9.20,89.20 6.51,95.71 0.00,93.01 -6.51,95.71 -9.20,89.20 -15.71,86.51 -13.01,80.00 -15.71,73.49 -9.20,70.80 -6.51,64.29 -0.00,66.99'/%3E%3Cpolygon points='86.51,64.29 89.20,70.80 95.71,73.49 93.01,80.00 95.71,86.51 89.20,89.20 86.51,95.71 80.00,93.01 73.49,95.71 70.80,89.20 64.29,86.51 66.99,80.00 64.29,73.49 70.80,70.80 73.49,64.29 80.00,66.99'/%3E%3Cpolygon points='47.00,0.00 42.23,2.23 40.00,7.00 37.77,2.23 33.00,0.00 37.77,-2.23 40.00,-7.00 42.23,-2.23'/%3E%3Cpolygon points='7.00,40.00 2.23,42.23 0.00,47.00 -2.23,42.23 -7.00,40.00 -2.23,37.77 -0.00,33.00 2.23,37.77'/%3E%3Cpolygon points='87.00,40.00 82.23,42.23 80.00,47.00 77.77,42.23 73.00,40.00 77.77,37.77 80.00,33.00 82.23,37.77'/%3E%3Cpolygon points='47.00,80.00 42.23,82.23 40.00,87.00 37.77,82.23 33.00,80.00 37.77,77.77 40.00,73.00 42.23,77.77'/%3E%3Cline x1='52.62' y1='52.62' x2='67.38' y2='67.38'/%3E%3Cline x1='27.38' y1='52.62' x2='12.62' y2='67.38'/%3E%3Cline x1='52.62' y1='27.38' x2='67.38' y2='12.62'/%3E%3Cline x1='27.38' y1='27.38' x2='12.62' y2='12.62'/%3E%3C/svg%3E");
+  --mirage-star: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolygon points='12.00,0.50 15.37,3.87 20.13,3.87 20.13,8.63 23.50,12.00 20.13,15.37 20.13,20.13 15.37,20.13 12.00,23.50 8.63,20.13 3.87,20.13 3.87,15.37 0.50,12.00 3.87,8.63 3.87,3.87 8.63,3.87'/%3E%3C/svg%3E");
+  --mirage-band: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12' viewBox='0 0 24 12' fill='none' stroke='black' stroke-width='0.8'%3E%3Cpolygon points='6.00,1.40 7.35,2.75 9.25,2.75 9.25,4.65 10.60,6.00 9.25,7.35 9.25,9.25 7.35,9.25 6.00,10.60 4.65,9.25 2.75,9.25 2.75,7.35 1.40,6.00 2.75,4.65 2.75,2.75 4.65,2.75'/%3E%3Cpolygon points='18,2 22,6 18,10 14,6'/%3E%3C/svg%3E");
+  --mirage-corner: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40' fill='none' stroke='black' stroke-width='1.2'%3E%3Cpolygon points='20.00,2.00 25.27,7.27 32.73,7.27 32.73,14.73 38.00,20.00 32.73,25.27 32.73,32.73 25.27,32.73 20.00,38.00 14.73,32.73 7.27,32.73 7.27,25.27 2.00,20.00 7.27,14.73 7.27,7.27 14.73,7.27'/%3E%3Cpolygon points='26.89,3.37 29.74,10.26 36.63,13.11 33.78,20.00 36.63,26.89 29.74,29.74 26.89,36.63 20.00,33.78 13.11,36.63 10.26,29.74 3.37,26.89 6.22,20.00 3.37,13.11 10.26,10.26 13.11,3.37 20.00,6.22'/%3E%3Ccircle cx='20' cy='20' r='5'/%3E%3C/svg%3E");
+}
+
+/* ── Page backdrop: star lattice + dusk glow ───────────────────────────────── */
+html[data-theme="mirage"] body {
+  background:
+    radial-gradient(
+      1200px 600px at 75% -10%,
+      color-mix(in oklab, var(--scene-sky-low) 45%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      900px 500px at 0% 30%,
+      color-mix(in oklab, var(--color-accent-2) 8%, transparent),
+      transparent 70%
+    ),
+    var(--color-bg);
+  background-attachment: fixed;
+}
+html[data-theme="mirage"] body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--color-accent);
+  opacity: var(--pattern-opacity);
+  mask: var(--mirage-lattice) repeat;
+  mask-size: 80px 80px;
+  -webkit-mask: var(--mirage-lattice) repeat;
+  -webkit-mask-size: 80px 80px;
+  animation: mirage-drift 120s linear infinite;
+}
+@keyframes mirage-drift {
+  to {
+    mask-position: 80px 160px;
+    -webkit-mask-position: 80px 160px;
+  }
+}
+
+html[data-theme="mirage"] ::selection {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────────── */
+html[data-theme="mirage"] header {
+  background: color-mix(in oklab, var(--color-bg) 72%, transparent);
+  border-image: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in oklab, var(--color-accent) 60%, transparent),
+      transparent
+    )
+    1;
+}
+html[data-theme="mirage"] .brand-mark {
+  font-family: var(--font-display-family);
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  background: linear-gradient(
+    100deg,
+    var(--color-gold-deep),
+    var(--color-gold-light) 45%,
+    var(--color-accent)
+  );
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+}
+
+/* ── Hero ───────────────────────────────────────────────────────────────────── */
+@media (min-width: 1024px) {
+  html[data-theme="mirage"] .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    align-items: center;
+    gap: 3rem;
+  }
+}
+html[data-theme="mirage"] .hero-art {
+  position: relative;
+  margin: 2.5rem auto 0;
+  max-width: 26rem;
+  filter: drop-shadow(0 30px 60px color-mix(in oklab, var(--scene-horizon) 22%, transparent));
+}
+@media (min-width: 1024px) {
+  html[data-theme="mirage"] .hero-art {
+    margin-top: 0;
+  }
+}
+
+.mirage-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono-family);
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-accent-2);
+}
+.mirage-eyebrow::before,
+.mirage-eyebrow::after {
+  content: "";
+  width: 0.7rem;
+  height: 0.7rem;
+  background: var(--color-accent);
+  mask: var(--mirage-star) center / contain no-repeat;
+  -webkit-mask: var(--mirage-star) center / contain no-repeat;
+}
+
+.mirage-calligraphy {
+  margin-top: 0.5rem;
+  font-family: var(--font-calligraphy-family);
+  font-weight: 700;
+  font-size: clamp(2.75rem, 9vw, 5.25rem);
+  line-height: 1.35;
+  text-align: start;
+  background: linear-gradient(
+    110deg,
+    var(--color-gold-deep) 0%,
+    var(--color-accent) 30%,
+    var(--color-gold-light) 45%,
+    var(--color-accent) 60%,
+    var(--color-gold-deep) 100%
+  );
+  background-size: 250% 100%;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 6px 22px color-mix(in oklab, var(--color-accent) 35%, transparent));
+  animation: mirage-shimmer 9s ease-in-out infinite;
+}
+/* Keep the RTL word aligned with the LTR copy column. */
+html[data-theme="mirage"] .mirage-calligraphy {
+  direction: rtl;
+  width: fit-content;
+}
+@keyframes mirage-shimmer {
+  0%,
+  100% {
+    background-position: 100% 0;
+  }
+  50% {
+    background-position: 0% 0;
+  }
+}
+
+html[data-theme="mirage"] .hero-title {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  font-size: clamp(2.5rem, 6vw, 4.25rem);
+  line-height: 1.05;
+}
+html[data-theme="mirage"] .hero-role {
+  font-size: 0.8rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+}
+html[data-theme="mirage"] .hero-role::before {
+  content: "";
+  display: inline-block;
+  width: 2.5rem;
+  height: 1px;
+  margin-right: 0.9rem;
+  vertical-align: middle;
+  background: linear-gradient(90deg, transparent, var(--color-accent-2));
+}
+
+/* CTAs: pill buttons, gold leaf primary. */
+html[data-theme="mirage"] .cta {
+  border-radius: 9999px;
+  padding-inline: 1.25rem;
+  font-family: var(--font-sans-family);
+  letter-spacing: 0.02em;
+}
+html[data-theme="mirage"] .hero-ctas {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.1rem;
+}
+
+/* Primary: a gold-leaf "invitation" with a star badge, subtitle and arrow. */
+html[data-theme="mirage"] .cta-primary {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  gap: 0.9rem;
+  padding: 0.55rem 1.4rem 0.55rem 0.55rem;
+  border-color: color-mix(in oklab, var(--color-gold-light) 70%, transparent);
+  background: linear-gradient(
+    120deg,
+    var(--color-gold-light),
+    var(--color-accent) 45%,
+    var(--color-gold-deep)
+  );
+  color: var(--color-bg);
+  box-shadow:
+    0 0 0 4px color-mix(in oklab, var(--color-accent) 12%, transparent),
+    0 14px 40px -14px color-mix(in oklab, var(--color-accent) 75%, transparent);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+html[data-theme="mirage"] .cta-primary:hover {
+  background: linear-gradient(
+    120deg,
+    var(--color-gold-light),
+    var(--color-accent) 45%,
+    var(--color-gold-deep)
+  );
+  color: var(--color-bg);
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 6px color-mix(in oklab, var(--color-accent) 18%, transparent),
+    0 20px 50px -14px color-mix(in oklab, var(--color-accent) 85%, transparent);
+}
+/* Light sweep across the gold. */
+html[data-theme="mirage"] .cta-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    100deg,
+    transparent 30%,
+    color-mix(in oklab, white 55%, transparent) 50%,
+    transparent 70%
+  );
+  translate: -120% 0;
+  animation: cta-sweep 4.5s ease-in-out 1.5s infinite;
+}
+@keyframes cta-sweep {
+  0% {
+    translate: -120% 0;
+  }
+  35%,
+  100% {
+    translate: 120% 0;
+  }
+}
+html[data-theme="mirage"] .cta-badge {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 9999px;
+  background: var(--color-bg);
+  color: var(--color-accent);
+  font-size: 1.15rem;
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-accent) 60%, transparent);
+}
+html[data-theme="mirage"] .cta-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  text-align: left;
+}
+html[data-theme="mirage"] .cta-label {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+html[data-theme="mirage"] .cta-sub {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.75rem;
+  color: color-mix(in oklab, var(--color-bg) 78%, var(--color-gold-deep));
+}
+html[data-theme="mirage"] .cta-arrow {
+  display: inline-block;
+  margin-left: 0.4rem;
+  font-size: 1.2rem;
+  transition: translate 0.25s ease;
+}
+html[data-theme="mirage"] .cta-primary:hover .cta-arrow {
+  translate: 4px 0;
+}
+
+/* Secondary: one compact row of hairline pills. */
+html[data-theme="mirage"] .hero-links {
+  gap: 0.6rem;
+}
+html[data-theme="mirage"] .cta-secondary {
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  border-color: color-mix(in oklab, var(--color-accent) 30%, var(--color-border));
+  background: color-mix(in oklab, var(--color-surface) 60%, transparent);
+  backdrop-filter: blur(6px);
+}
+html[data-theme="mirage"] .cta-secondary:hover {
+  color: var(--color-accent);
+  background: color-mix(in oklab, var(--color-accent) 10%, var(--color-surface));
+}
+
+/* Scene animation */
+.mirage-rosette {
+  animation: mirage-spin 140s linear infinite;
+}
+@keyframes mirage-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.mirage-twinkle {
+  animation: mirage-twinkle 5s ease-in-out infinite;
+}
+@keyframes mirage-twinkle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+.mirage-edge {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0.55;
+  animation: mirage-draw 1.4s ease-out forwards;
+}
+@keyframes mirage-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.mirage-pulse {
+  animation: mirage-pulse 4s ease-out infinite;
+}
+@keyframes mirage-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  70%,
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+.mirage-flow {
+  stroke-dasharray: 2 10;
+  animation: mirage-flow 4s linear infinite;
+}
+@keyframes mirage-flow {
+  to {
+    stroke-dashoffset: -48;
+  }
+}
+
+/* ── Window cards → illuminated panels ─────────────────────────────────────── */
+html[data-theme="mirage"] .window-card {
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--color-surface) 82%, transparent),
+    color-mix(in oklab, var(--color-surface) 94%, transparent)
+  );
+  backdrop-filter: blur(10px);
+  border-color: color-mix(in oklab, var(--color-accent) 28%, var(--color-border));
+  overflow: visible;
+}
+/* Inner hairline frame, like a manuscript border. */
+html[data-theme="mirage"] .window-card::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid color-mix(in oklab, var(--color-accent) 14%, transparent);
+  border-radius: calc(var(--radius-window) - 5px);
+  pointer-events: none;
+}
+/* Rosette ornaments on the top corners. */
+html[data-theme="mirage"] .window-card::after {
+  content: "";
+  position: absolute;
+  top: -11px;
+  left: -11px;
+  right: -11px;
+  height: 22px;
+  pointer-events: none;
+  background: var(--color-accent);
+  opacity: 0.75;
+  mask:
+    var(--mirage-corner) left top / 22px 22px no-repeat,
+    var(--mirage-corner) right top / 22px 22px no-repeat;
+  -webkit-mask:
+    var(--mirage-corner) left top / 22px 22px no-repeat,
+    var(--mirage-corner) right top / 22px 22px no-repeat;
+}
+html[data-theme="mirage"] .window-bar {
+  position: relative;
+  justify-content: center;
+  border-top-left-radius: var(--radius-window);
+  border-top-right-radius: var(--radius-window);
+  background: transparent;
+  border-color: color-mix(in oklab, var(--color-accent) 18%, transparent);
+}
+/* Zellige band behind the title. */
+html[data-theme="mirage"] .window-bar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-accent);
+  opacity: 0.16;
+  mask: var(--mirage-band) repeat-x center / 24px 12px;
+  -webkit-mask: var(--mirage-band) repeat-x center / 24px 12px;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+html[data-theme="mirage"] .window-dots {
+  display: none;
+}
+html[data-theme="mirage"] .window-title {
+  position: relative;
+  margin: 0;
+  padding: 0 0.9rem;
+  background: var(--color-surface);
+  color: var(--color-accent);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.65rem;
+}
+
+/* Section eyebrow: ornamental numerals instead of a shell prompt. */
+.section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-mono-family);
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  color: var(--color-accent-2);
+}
+.section-eyebrow [lang="ar"] {
+  font-family: var(--font-calligraphy-family);
+  font-size: 1.35rem;
+  letter-spacing: 0;
+  color: var(--color-accent);
+}
+.section-eyebrow-rule {
+  flex: 0 0 3rem;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-accent), transparent);
+}
+html[data-theme="mirage"] .section-title {
+  font-weight: 600;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  letter-spacing: 0.01em;
+}
+html[data-theme="mirage"] .section-title::after {
+  content: "";
+  display: block;
+  width: 7rem;
+  height: 12px;
+  margin-top: 0.6rem;
+  background: linear-gradient(90deg, var(--color-accent), transparent);
+  mask: var(--mirage-band) repeat-x left center / 24px 12px;
+  -webkit-mask: var(--mirage-band) repeat-x left center / 24px 12px;
+}
+
+/* ── Content details ───────────────────────────────────────────────────────── */
+html[data-theme="mirage"] .timeline-role {
+  font-family: var(--font-display-family);
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+html[data-theme="mirage"] .timeline-node {
+  width: 0.85rem;
+  height: 0.85rem;
+  left: -7px;
+  border-radius: 0;
+  background: var(--color-accent);
+  mask: var(--mirage-star) center / contain no-repeat;
+  -webkit-mask: var(--mirage-star) center / contain no-repeat;
+}
+
+/* Product cards: pointed-arch tops. */
+html[data-theme="mirage"] .product-card {
+  position: relative;
+  padding-top: 2.25rem;
+  border-radius: 0.75rem;
+  border-top-left-radius: 50% 2.25rem;
+  border-top-right-radius: 50% 2.25rem;
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--color-accent) 7%, var(--color-surface-2)),
+    var(--color-surface-2) 40%
+  );
+}
+html[data-theme="mirage"] .product-card::before {
+  content: "";
+  position: absolute;
+  top: 0.55rem;
+  left: 50%;
+  width: 0.85rem;
+  height: 0.85rem;
+  translate: -50% 0;
+  background: var(--color-accent);
+  mask: var(--mirage-star) center / contain no-repeat;
+  -webkit-mask: var(--mirage-star) center / contain no-repeat;
+}
+html[data-theme="mirage"] .product-card:hover {
+  box-shadow: 0 18px 50px -28px color-mix(in oklab, var(--color-accent) 60%, transparent);
+}
+
+/* ── Boot screen ───────────────────────────────────────────────────────────── */
+html[data-theme="mirage"] .boot-screen {
+  background:
+    radial-gradient(
+      600px 400px at 50% 40%,
+      color-mix(in oklab, var(--scene-sky-low) 40%, transparent),
+      transparent
+    ),
+    var(--color-bg);
+}
+
+/* ── Footer ────────────────────────────────────────────────────────────────── */
+html[data-theme="mirage"] footer {
+  border-image: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in oklab, var(--color-accent) 50%, transparent),
+      transparent
+    )
+    1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme="mirage"] body::before,
+  .mirage-rosette,
+  .mirage-twinkle,
+  .mirage-pulse,
+  .mirage-flow,
+  .mirage-calligraphy,
+  html[data-theme="mirage"] .cta-primary::after {
+    animation: none;
+  }
+  .mirage-edge {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
+
+html[data-theme="mirage"] header nav ul {
+  font-family: var(--font-sans-family);
+  letter-spacing: 0.01em;
+}

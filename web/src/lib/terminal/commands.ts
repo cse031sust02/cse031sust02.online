@@ -46,7 +46,7 @@ export function runCommand(rawInput: string, data: TerminalData): CommandResult 
     case "help":
       return { lines: HELP_LINES };
     case "whoami":
-      return { lines: [`${data.name}: ${data.title}`, data.tagline, `status: ${data.status}`] };
+      return { lines: [`${data.name}: ${data.title}`, data.tagline] };
     case "ls":
       if (rest === "products" || rest === "~/products") {
         return { lines: data.products.map((p) => `${p.name}/  (${p.company})`) };

@@ -120,7 +120,7 @@ test("terminal runs commands", async ({ page }) => {
   const input = page.getByRole("textbox", { name: /terminal command/i });
   await input.fill("whoami");
   await input.press("Enter");
-  await expect(page.getByRole("log")).toContainText("status:");
+  await expect(page.getByRole("log")).toContainText("Engineering Manager");
   await input.fill("foo");
   await input.press("Enter");
   await expect(page.getByRole("log")).toContainText("command not found: foo");

@@ -21,9 +21,10 @@ describe("terminal commands", () => {
     }
   });
 
-  it("whoami prints name, title and status from the profile", () => {
+  it("whoami prints name and title from the profile, without the status", () => {
     expect(out("whoami")).toContain("Ada Fixture: Engineering Manager");
-    expect(out("whoami")).toContain("status: Currently freelancing");
+    expect(out("whoami")).not.toContain("status:");
+    expect(out("whoami")).not.toContain("freelancing");
   });
 
   it("ls products lists every product", () => {

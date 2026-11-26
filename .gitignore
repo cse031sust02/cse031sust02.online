@@ -37,6 +37,9 @@ yarn-error.log*
 .env*
 !.env.example
 
+# server-local compose overrides (e.g. bind to 127.0.0.1 behind Nginx)
+docker-compose.override.yml
+
 # vercel
 .vercel
 

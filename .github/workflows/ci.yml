@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: web
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run format:check
+      - run: npm run typecheck
+      - run: npm test
+      - name: Build with canary secrets and check they don't leak
+        env:
+          OPENROUTER_API_KEY: sk-or-v1-ci-canary-0000000000000000
+          CONTACT_TO_EMAIL: ci-canary-owner@example.invalid
+          SMTP_PASS: ci-canary-smtp-pass
+        run: npm run build && npm run check:secrets
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+      - name: E2E (builds without secrets)
+        run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: web/playwright-report
+          retention-days: 7
+
+  docker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build image
+        working-directory: .
+        run: docker build -t cse031sust02-web ./web
+      - name: Run image and check health
+        working-directory: .
+        run: |
+          docker run -d --name web -p 3000:3000 cse031sust02-web
+          for i in $(seq 1 30); do curl -sf http://localhost:3000/api/health && exit 0; sleep 2; done
+          docker logs web; exit 1
+      - name: Image runs as non-root
+        working-directory: .
+        run: test "$(docker exec web id -u)" != "0"
+
+  nginx:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: nginx -t on the sample config
+        working-directory: .
+        run: ./docs/deployment/nginx/test-config.sh

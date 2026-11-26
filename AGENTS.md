@@ -46,7 +46,9 @@ Lint:           npm run lint
 Format:         npm run format
 Type check:     npm run typecheck
 Prod build:     npm run build && npm start
+Secret check:   npm run check:secrets       # after a build
 Docker (local): docker compose up --build   # from repo root
+Nginx check:    ./docs/deployment/nginx/test-config.sh   # from repo root
 ```
 
 ## Development Rules

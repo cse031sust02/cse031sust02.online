@@ -1,7 +1,7 @@
 # 008: Deployment Guides
 
 ## Status
-Backlog
+Completed
 
 ## Feature Doc
 docs/decisions/004-host-agnostic-standalone-docker.md
@@ -19,13 +19,13 @@ Step-by-step, tested guides to deploy the same build to the owner's chosen host.
 - Optional GitHub Actions CI: lint, typecheck, test, build, Docker build.
 
 ## Acceptance Criteria
-- [ ] The Docker image built per the guide runs locally and passes the Playwright smoke test against it.
-- [ ] The Nginx sample config passes `nginx -t` (in a container).
-- [ ] CI workflow (if added) passes on a clean clone.
-- [ ] The owner deploys to the chosen host following the guide, without extra steps.
+- [x] The Docker image built per the guide runs locally and passes the Playwright smoke test against it. _(Hostinger Docker steps 3–5 with the localhost override; `smoke.spec.ts` + `seo.spec.ts` passed against it.)_
+- [x] The Nginx sample config passes `nginx -t` (in a container). _(`docs/deployment/nginx/test-config.sh`.)_
+- [x] CI workflow (if added) passes on a clean clone. _(All `checks` job steps run locally on a fresh clone; the workflow itself runs on the first push to GitHub.)_
+- [ ] The owner deploys to the chosen host following the guide, without extra steps. _(Owner action.)_
 
 ## Out of Scope
 - Infrastructure-as-code, autoscaling.
 
 ## Open Questions
-- Which host first?
+- Which host first? _(Still open. The guide covers all of them; Hostinger VPS + Docker is listed first as the recommended path.)_

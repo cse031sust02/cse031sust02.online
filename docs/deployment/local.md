@@ -23,9 +23,10 @@ Open http://localhost:3000.
 ## Run (production build, no Docker)
 ```bash
 cd web
-npm run build
-npm start
+npm run build   # also copies static assets + content next to the standalone server
+npm start       # node .next/standalone/server.js, loads .env / .env.local
 ```
+Set `PORT` to change the port (default 3000).
 
 ## Run (Docker, closest to production)
 ```bash
@@ -37,7 +38,8 @@ Open http://localhost:3000.
 ## Checks (from `web/`)
 ```bash
 npm test            # unit tests
-npm run test:e2e    # Playwright smoke tests (starts the app)
+npm run test:e2e    # Playwright smoke tests (builds and starts the app on port 3100)
+E2E_BASE_URL=http://localhost:3000 npx playwright test   # against an already-running server (e.g. Docker)
 npm run lint
 npm run typecheck
 ```

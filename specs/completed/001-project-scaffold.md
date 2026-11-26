@@ -1,7 +1,7 @@
 # 001: Project Scaffold & Local Run
 
 ## Status
-Active
+Completed
 
 ## Feature Doc
 ARCHITECTURE.md, docs/deployment/local.md, docs/decisions/006-app-in-web-folder.md
@@ -34,15 +34,15 @@ GET /api/health  →  200 { "status": "ok" }
 ```
 
 ## Acceptance Criteria
-- [ ] `cd web && npm install && npm run dev` serves the placeholder page at http://localhost:3000.
-- [ ] `npm run build && npm start` (in `web/`) serves the same page.
-- [ ] `docker compose up --build` (from the repo root) serves the same page at http://localhost:3000, running as a non-root user.
-- [ ] `GET /api/health` returns 200 `{ "status": "ok" }` (unit test on the route handler).
-- [ ] Changing one color variable in `web/src/styles/theme.css` changes the placeholder's accent color (manual check).
-- [ ] `npm run lint`, `npm run typecheck`, `npm test` and `npm run test:e2e` all pass.
-- [ ] The Playwright smoke test loads `/` and asserts the page title and the prompt text.
-- [ ] `web/.env`, `web/.env.local`, `node_modules`, `.next` are git-ignored; `web/.env.example` is not.
-- [ ] No app source or app config files exist at the repo root (only docs/process files, `docker-compose.yml`, `.gitignore`).
+- [x] `cd web && npm install && npm run dev` serves the placeholder page at http://localhost:3000.
+- [x] `npm run build && npm start` (in `web/`) serves the same page.
+- [x] `docker compose up --build` (from the repo root) serves the same page at http://localhost:3000, running as a non-root user.
+- [x] `GET /api/health` returns 200 `{ "status": "ok" }` (unit test on the route handler).
+- [x] Changing one color variable in `web/src/styles/theme.css` changes the placeholder's accent color (manual check).
+- [x] `npm run lint`, `npm run typecheck`, `npm test` and `npm run test:e2e` all pass.
+- [x] The Playwright smoke test loads `/` and asserts the page title and the prompt text.
+- [x] `web/.env`, `web/.env.local`, `node_modules`, `.next` are git-ignored; `web/.env.example` is not.
+- [x] No app source or app config files exist at the repo root (only docs/process files, `docker-compose.yml`, `.gitignore`).
 
 ## Security
 - No secrets in the image: env vars are injected at runtime, never `COPY`'d.

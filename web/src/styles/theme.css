@@ -1,0 +1,38 @@
+/*
+ * TalhaOS design tokens: the ONLY place colors, fonts, radii and effects are defined.
+ * The design is provisional: change values here to re-theme the whole site.
+ * Tailwind utilities (bg-bg, text-accent, font-mono, …) map to these in globals.css.
+ */
+:root {
+  /* Surfaces */
+  --color-bg: #07090a;
+  --color-surface: #0d1113;
+  --color-surface-2: #141a1d;
+  --color-border: #1f2a2e;
+
+  /* Text */
+  --color-fg: #d7e2dc;
+  --color-muted: #8fa39a;
+
+  /* Accents */
+  --color-accent: #39ff88; /* phosphor green */
+  --color-accent-2: #33d6ff; /* cyan */
+  --color-highlight: #ffb547; /* amber */
+  --color-danger: #ff5f56;
+
+  /* Window chrome dots */
+  --color-dot-red: #ff5f56;
+  --color-dot-yellow: #ffbd2e;
+  --color-dot-green: #27c93f;
+
+  /* Typography (font families are injected by next/font as CSS variables) */
+  --font-mono-family: var(--font-jetbrains-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-sans-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Shape & effects */
+  --radius-window: 0.75rem;
+  --radius-chip: 0.375rem;
+  --glow-accent: 0 0 12px color-mix(in oklab, var(--color-accent) 45%, transparent);
+  --glow-text: 0 0 8px color-mix(in oklab, var(--color-accent) 55%, transparent);
+  --scanline-opacity: 0.06;
+}

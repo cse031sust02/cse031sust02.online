@@ -1,20 +1,17 @@
-import { WindowCard } from "@/components/ui/WindowCard";
+import { SiteFooter } from "@/components/layout/SiteFooter";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { HomeSections } from "@/components/sections/HomeSections";
+import { getProfile } from "@/lib/content/load-profile";
 
 export default function Home() {
+  const profile = getProfile();
   return (
-    <main className="flex min-h-dvh items-center justify-center p-4">
-      <WindowCard title="~ — zsh" className="w-full max-w-xl">
-        <p className="font-mono text-sm sm:text-base">
-          <span className="text-accent text-glow">talha@cse031sust02</span>
-          <span className="text-muted">:</span>
-          <span className="text-accent-2">~</span>
-          <span className="text-muted">$ </span>
-          <span>booting…</span>
-          <span aria-hidden="true" className="cursor-blink text-accent">
-            ▋
-          </span>
-        </p>
-      </WindowCard>
-    </main>
+    <>
+      <SiteHeader handle={profile.basics.handle} />
+      <main id="main" className="mx-auto flex max-w-5xl flex-col gap-10 px-4 pb-16">
+        <HomeSections profile={profile} />
+      </main>
+      <SiteFooter profile={profile} />
+    </>
   );
 }

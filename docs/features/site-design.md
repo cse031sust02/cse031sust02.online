@@ -38,11 +38,15 @@ The site presents as a small retro-futuristic developer OS / terminal, while sta
 - **Interactive terminal:** `help`, `whoami`, `ls products`, `cat experience`, `skills --tree`, `contact`, `clear`, `twin <question>`, `sudo make-coffee`.
 - **Easter eggs:** the Konami code toggles matrix mode; `rm -rf /` gives a joke reply.
 
+## Navigation config
+Nav items (label, anchor, terminal command) live in `web/src/config/nav.ts`. The header, section titles and (later) the command palette and sitemap read from it, so adding `/blog` or `/lab` is a config change.
+
 ## Accessibility rules
 - Every terminal feature has a normal clickable equivalent.
 - WCAG AA contrast, visible focus, semantic landmarks.
 - `prefers-reduced-motion` disables boot, rain, typewriter and scanlines.
 - Works from 360px wide; terminal and chat work with mobile keyboards.
+- Checked automatically: `web/e2e/a11y.spec.ts` (axe-core, WCAG 2.1 A/AA) and `web/e2e/layout.spec.ts` (no horizontal scroll at 360px).
 
 ## Specs
-[003-site-sections](../../specs/backlog/003-site-sections.md), [004-nerd-layer](../../specs/backlog/004-nerd-layer.md)
+[003-site-sections](../../specs/completed/003-site-sections.md), [004-nerd-layer](../../specs/backlog/004-nerd-layer.md)

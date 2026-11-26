@@ -40,6 +40,7 @@ cse031sust02.dev/
     └── src/
         ├── app/              # layout, page, twin/, api/chat, api/contact, api/health, OG, sitemap, robots
         ├── components/       # sections/, terminal/, twin/, boot/, hero/, ui/, layout/
+        ├── config/           # nav.ts: nav items shared by header, palette, sitemap
         ├── lib/              # content/, twin/, contact/, rate-limit.ts
         └── styles/           # theme.css, globals.css
 ```

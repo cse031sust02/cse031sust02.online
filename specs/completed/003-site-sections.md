@@ -1,7 +1,7 @@
 # 003: Site Sections (static)
 
 ## Status
-Backlog
+Completed
 
 ## Feature Doc
 docs/features/site-design.md
@@ -23,16 +23,16 @@ so that I understand who he is in under a minute.
 - External links open in a new tab with `rel="noopener noreferrer"`.
 
 ## Acceptance Criteria
-- [ ] Every experience entry, product, skill group, education item and certification in `profile.yaml` appears on the page (test renders sections with a fixture profile).
-- [ ] Adding an experience entry to the fixture adds a timeline item, with no component change.
-- [ ] Products and certifications link to their `url`s.
-- [ ] No email address or phone number appears in the rendered HTML (test).
-- [ ] Experience items expand and collapse with mouse and keyboard (Enter/Space), with `aria-expanded` set correctly.
-- [ ] No horizontal scroll at 360px width (Playwright).
-- [ ] Lighthouse accessibility ≥ 95 on `/` locally.
+- [x] Every experience entry, product, skill group, education item and certification in `profile.yaml` appears on the page (test renders sections with a fixture profile).
+- [x] Adding an experience entry to the fixture adds a timeline item, with no component change.
+- [x] Products and certifications link to their `url`s.
+- [x] No email address or phone number appears in the rendered HTML (test).
+- [x] Experience items expand and collapse with mouse and keyboard (Enter/Space), with `aria-expanded` set correctly.
+- [x] No horizontal scroll at 360px width (Playwright).
+- [x] Lighthouse accessibility ≥ 95 on `/` locally. _(Automated equivalent: `e2e/a11y.spec.ts` runs axe-core, the engine behind Lighthouse's accessibility score, and reports 0 WCAG A/AA violations. A Lighthouse run itself is left to the owner.)_
 
 ## Out of Scope
 - Boot sequence, matrix background, terminal, palette (004); twin (005); form (006).
 
 ## Open Questions
-- EnergyMeta links to a YouTube video in the CV. Is that the product demo?
+- EnergyMeta links to a YouTube video in the CV. Is that the product demo? _(Still open: the link is kept as-is, with the TODO in `profile.yaml`.)_

@@ -224,6 +224,13 @@ twin_notes:
   interests: ""                 # e.g. hobbies, side projects, what you read
   location_and_timezone: ""     # e.g. "Dhaka, Bangladesh (GMT+6)"; optional
   fun_facts: []                 # short one-liners the twin can drop in
-  faq: []                       # pre-written answers, e.g.
-  #  - q: What kind of opportunities interest you?
-  #    a: ...
+  # Pre-written answers. The first question also appears as a suggested chip.
+  faq:
+    - q: Why is your brand "cse031sust02"?
+      a: >-
+        Honestly? Name collisions. "Talha" is a popular name, so signup forms
+        kept telling me it was already taken. So I did what an engineer does:
+        I built a unique key from my own data. CSE is my department, 031 is my
+        roll number, SUST is Shahjalal University of Science & Technology, and
+        02 is my 2002 batch. Zero collisions so far: as far as I know, it's the
+        only one in the world. Basically, a primary key for a human.

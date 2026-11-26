@@ -42,6 +42,7 @@ export function generateMetadata(): Metadata {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   const profile = getProfile();
+  const promptSet = suggestedPrompts(profile);
   const bootLines = [
     `Loading profile: ${profile.basics.name}`,
     `Mounting ~/experience (${profile.experience.length} commits)`,
@@ -64,7 +65,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-dvh">
         <NerdProvider>
           <TwinProvider
-            prompts={suggestedPrompts(profile)}
+            prompts={promptSet.pool}
+            pinnedPrompts={promptSet.pinned}
             ownerName={profile.basics.name.split(" ")[0]}
           >
             <BootSequence lines={bootLines} />

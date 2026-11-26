@@ -1,5 +1,6 @@
 "use client";
 
+import { SHOWN_PROMPTS, orderPrompts } from "@/lib/twin/suggested-prompts";
 import {
   type ReactNode,
   createContext,
@@ -17,6 +18,7 @@ export type TwinStatus = "idle" | "streaming" | "offline" | "rate_limited" | "er
 type TwinState = {
   messages: TwinMessage[];
   status: TwinStatus;
+  /** Suggested chips for an empty chat: pinned ones first, then random picks. */
   prompts: string[];
   /** Owner's first name, for UI copy. */
   ownerName: string;
@@ -43,6 +45,7 @@ export const STATUS_TEXT: Record<Exclude<TwinStatus, "idle" | "streaming">, stri
 };
 
 const TwinContext = createContext<TwinState | null>(null);
+const NO_PROMPTS: string[] = [];
 
 export function useTwin(): TwinState {
   const ctx = useContext(TwinContext);
@@ -56,14 +59,26 @@ export function useTwinOptional(): TwinState | null {
 
 /** Shared twin conversation (launcher, /twin, home teaser, terminal). Lives in sessionStorage only. */
 export function TwinProvider({
-  prompts,
+  prompts: pool,
+  pinnedPrompts,
   ownerName,
   children,
 }: {
+  /** Pool of suggested questions; a random few are shown. */
   prompts: string[];
+  /** Questions always shown first (e.g. the brand FAQ). */
+  pinnedPrompts?: string[];
   ownerName: string;
   children: ReactNode;
 }) {
+  const pinned = pinnedPrompts ?? NO_PROMPTS;
+  // Server render uses a fixed order; the shuffle happens after hydration to avoid a mismatch.
+  const [ordered, setOrdered] = useState<string[]>(() => [...pinned, ...pool]);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setOrdered(orderPrompts({ pinned, pool }));
+  }, [pinned, pool]);
+  const prompts = useMemo(() => ordered.slice(0, SHOWN_PROMPTS), [ordered]);
   const [messages, setMessages] = useState<TwinMessage[]>([]);
   const [status, setStatus] = useState<TwinStatus>("idle");
   const [open, setOpen] = useState(false);

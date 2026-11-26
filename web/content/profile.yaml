@@ -28,15 +28,6 @@ basics:
     Currently freelancing. Open to new work opportunities that interest me:
     reach out through the contact form.
 
-# Shown in the About section as counters.
-stats:
-  - label: Years in software
-    value: "15+"
-  - label: Engineers led
-    value: "10–12"
-  - label: Flagship products
-    value: "4"
-
 links:
   - label: GitHub
     url: https://github.com/cse031sust02

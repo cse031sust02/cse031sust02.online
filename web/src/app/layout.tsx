@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Aref_Ruqaa, Cormorant_Garamond, Inter, JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { BootSequence } from "@/components/nerd/BootSequence";
 import { CommandPalette } from "@/components/nerd/CommandPalette";
 import { MatrixMode } from "@/components/nerd/MatrixMode";
@@ -90,6 +91,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <ScanlineOverlay />
           </TwinProvider>
         </NerdProvider>
+        <Analytics />
       </body>
     </html>
   );

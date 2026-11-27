@@ -1,6 +1,6 @@
 # Local development with live reload: `docker compose up` → http://localhost:3000
 # Edits under web/ (code, styles, content/profile.yaml) show up without a rebuild.
-# The production image is built from web/Dockerfile (see CI), not from this file.
+# Production is deployed on Vercel; this file is for local development only.
 name: cse031sust02-dev
 
 services:

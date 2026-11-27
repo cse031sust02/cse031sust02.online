@@ -8,7 +8,7 @@ The work is spec-driven: see [Workflow](#workflow). Overview: [ARCHITECTURE.md](
 
 ## Repository Layout
 
-- **`web/`**: the entire Next.js app (source, config, tests, `Dockerfile`, `.env*`, `content/`). **All app code lives here.**
+- **`web/`**: the entire Next.js app (source, config, tests, `.env*`, `content/`). **All app code lives here.**
 - Root: docs and process only: `docs/`, `specs/`, `tasks/`, `AGENTS.md`, `ARCHITECTURE.md`, `README.md`, `docker-compose.yml`.
 - Never put app code or app config at the root.
 
@@ -21,7 +21,7 @@ The work is spec-driven: see [Workflow](#workflow). Overview: [ARCHITECTURE.md](
 - OpenRouter (LLM), nodemailer (SMTP contact form)
 - Vitest + Testing Library (unit), Playwright (e2e smoke)
 - ESLint + Prettier
-- Docker (`output: 'standalone'`): host-agnostic
+- Vercel (production, Root Directory `web`); `output: 'standalone'` for `npm start`; Docker Compose for local dev only
 
 ## Architecture Rules
 

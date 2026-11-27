@@ -7,7 +7,7 @@ Accepted
 The owner wants documentation and specs clearly separated from source code. A Next.js project at the root scatters about 10 config files among the docs.
 
 ## Decision
-The entire Next.js project (source, config, tests, Dockerfile, env files, `content/`) lives in `web/`. The root holds only docs, specs, tasks, agent rules and `docker-compose.yml`.
+The entire Next.js project (source, config, tests, env files, `content/`) lives in `web/`. The root holds only docs, specs, tasks, agent rules and `docker-compose.yml`.
 
 ## Reasons
 - A clean root: docs and specs are easy to find and review.
@@ -16,5 +16,5 @@ The entire Next.js project (source, config, tests, Dockerfile, env files, `conte
 
 ## Consequences
 - npm commands run from `web/` (`cd web`).
-- Vercel needs "Root Directory" set to `web`. Other hosts deploy `web/` or the Docker image.
+- Vercel needs "Root Directory" set to `web`. Other hosts would deploy `web/`.
 - `.env` / `.env.local` live in `web/`.

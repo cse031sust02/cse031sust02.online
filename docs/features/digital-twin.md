@@ -46,7 +46,7 @@ Visitors chat with an AI persona of Talha that answers in first person, grounded
 - Entry points: floating launcher (all pages except `/twin`), home teaser, `/twin`, command palette (`agent`), terminal (`agent <question>`, with `twin` kept as an alias).
 
 ## Checks
-- `npm run check:secrets` (after a build) fails if a server-only env name, its value, or an OpenRouter-shaped key appears in `.next/static`. CI builds with a canary key and runs it.
+- `npm run check:secrets` (after a build) fails if a server-only env name, its value, or an OpenRouter-shaped key appears in `.next/static`. Run it after a local build (optionally with a canary key set).
 - Server logs record only upstream status and model names, never message content.
 
 ## Decision

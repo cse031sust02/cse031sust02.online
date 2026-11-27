@@ -27,13 +27,11 @@ Docs and process live at the root. The whole app lives in `web/` ([ADR 006](docs
 cse031sust02.online/
 ├── AGENTS.md  CLAUDE.md  ARCHITECTURE.md  README.md
 ├── docker-compose.yml        # local dev server in Docker, mounts ./web (live reload)
-├── .github/workflows/ci.yml  # lint, typecheck, tests, build + secret check, e2e, Docker
 ├── docs/                     # features/, decisions/, deployment/
 ├── specs/                    # backlog/, active/, completed/, template.md
 ├── tasks/                    # template.md
 └── web/                      # the Next.js app
     ├── package.json  next.config.ts  tsconfig.json  (lint/test configs)
-    ├── Dockerfile  .dockerignore
     ├── .env.example          # .env / .env.local live here (git-ignored)
     ├── content/profile.yaml
     ├── public/

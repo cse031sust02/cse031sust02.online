@@ -20,3 +20,5 @@ Build with `output: 'standalone'`, keep the whole app in `web/` with its multi-s
 - The in-memory rate limit is per instance; use Redis if scaled out.
 
 **Update (2026-11):** the root `docker-compose.yml` now runs the local dev server (live reload, port 3000) instead of a production-like build. The production image is still built from `web/Dockerfile` (as CI does).
+
+**Update (2026-11-27):** production is deployed on Vercel. `web/Dockerfile`, `web/.dockerignore` and the GitHub Actions CI workflow were removed. `output: 'standalone'` and the Node-only rule stay, so the app can still move to another host.

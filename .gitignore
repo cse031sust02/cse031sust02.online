@@ -40,10 +40,6 @@ yarn-error.log*
 # server-local compose overrides
 docker-compose.override.yml
 
-# production deployment guides are kept private by the owner (not in git)
-docs/deployment/production.md
-docs/deployment/nginx/
-
 # vercel
 .vercel
 

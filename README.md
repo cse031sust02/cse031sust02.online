@@ -3,13 +3,13 @@
 Personal site of **Talha Ibne Imam** (Engineering Manager, AI SaaS). It's styled as "cse031sust02", a retro terminal: a CV-driven portfolio plus a **Digital Twin** chat powered by OpenRouter.
 
 - All CV and twin facts live in one file: [`web/content/profile.yaml`](web/content/profile.yaml).
-- Next.js (App Router) + TypeScript + Tailwind CSS v4, built as a standalone Node server and Docker image, so it runs on any host.
+- Next.js (App Router) + TypeScript + Tailwind CSS v4, built as a standalone Node server. Production is deployed on Vercel (Root Directory `web`).
 
 ## Repository layout
 
 ```
 cse031sust02.online/
-├── web/                  # the Next.js app (source, config, tests, Dockerfile, content/)
+├── web/                  # the Next.js app (source, config, tests, content/)
 ├── docs/                 # features/, decisions/ (ADRs), deployment/
 ├── specs/                # backlog/ → active/ → completed/
 ├── tasks/                # task template

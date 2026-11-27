@@ -20,6 +20,7 @@
     "check:secrets": "node scripts/check-client-secrets.mjs"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "next": "16.4.6",
     "nodemailer": "^10.6.1",
     "react": "19.3.0",
